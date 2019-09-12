@@ -41,7 +41,9 @@
     "tools:delegates:enable": "./node_modules/.bin/codeceptjs run --tests --grep @delegates_enable",
     "tools:delegates:disable": "./node_modules/.bin/codeceptjs run --tests --grep @delegates_disable",
     "precommit": "lint-staged && npm run lint && npm run format",
-    "prepush": "npm run lint"
+    "prepush": "npm run lint",
+    "snyk-protect": "snyk protect",
+    "prepare": "npm run snyk-protect"
   },
   "dependencies": {
     "allure": "0.0.0",
@@ -50,10 +52,11 @@
     "chai-bignumber": "^3.0.0",
     "chai-json-schema": "^1.5.0",
     "chai-sorted": "^0.2.0",
-    "codeceptjs": "^2.0.3",
+    "codeceptjs": "^2.3.0",
     "debug": "^4.1.0",
     "json-schema-ref-parser": "^6.1.0",
-    "lisk-elements": "=2.0.0"
+    "lisk-elements": "2.1.0",
+    "snyk": "^1.226.2"
   },
   "devDependencies": {
     "bignumber.js": "^8.0.2",
@@ -66,5 +69,6 @@
     "eslint-plugin-mocha": "^5.2.1",
     "lint-staged": "^8.1.0",
     "prettier": "^1.15.3"
-  }
+  },
+  "snyk": true
 }
