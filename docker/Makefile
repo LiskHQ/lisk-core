@@ -19,7 +19,7 @@ else
 endif
 
 up:
-	docker-compose up --detach
+	docker-compose up -d
 
 compose := docker-compose -f docker-compose.yml -f docker-compose.make.yml
 coldstart: $(lisk_net)_blockchain.db.gz up
