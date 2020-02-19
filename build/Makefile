@@ -54,6 +54,8 @@ src/lisk-$(LISK_VERSION)-$(UNAME_S)-x86_64_image/finished: \
 		src/lisk-$(LISK_VERSION)-$(UNAME_S)-x86_64_image/REVISION \
 		src/lisk-$(LISK_VERSION)-$(UNAME_S)-x86_64_image/config.json \
 		src/lisk-$(LISK_VERSION)-$(UNAME_S)-x86_64_image/env.sh \
+		src/lisk-$(LISK_VERSION)-$(UNAME_S)-x86_64_image/forger_backup.sh \
+		src/lisk-$(LISK_VERSION)-$(UNAME_S)-x86_64_image/forger_restore.sh \
 		src/lisk-$(LISK_VERSION)-$(UNAME_S)-x86_64_image/lisk.sh \
 		src/lisk-$(LISK_VERSION)-$(UNAME_S)-x86_64_image/lisk_snapshot.sh \
 		src/lisk-$(LISK_VERSION)-$(UNAME_S)-x86_64_image/tune.sh \
