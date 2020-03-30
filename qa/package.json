@@ -53,7 +53,7 @@
     "chai-bignumber": "^3.0.0",
     "chai-json-schema": "^1.5.0",
     "chai-sorted": "^0.2.0",
-    "codeceptjs": "^2.0.3",
+    "codeceptjs": "^2.3.0",
     "json-schema-ref-parser": "^6.1.0",
     "lisk-elements": "3.0.1"
   },
