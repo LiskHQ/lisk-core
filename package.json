@@ -38,7 +38,7 @@
 	"dependencies": {
 		"lisk-commander": "4.0.0-alpha.0",
 		"lisk-sdk": "4.0.0-alpha.0",
-		"pm2": "4.2.3"
+		"pm2": "4.3.0"
 	},
 	"devDependencies": {
 		"chai": "4.2.0",
