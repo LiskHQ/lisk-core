@@ -4,6 +4,7 @@ docker/
 Dockerfile
 docs/
 qa/
+qa-scripts/
 logs/*
 package/
 pids/*

@@ -20,12 +20,16 @@ import {
 	ReportMisbehaviorPlugin,
 } from 'lisk-sdk';
 import { LegacyAccountModule } from './modules';
+import {
+	StressPlugin,
+} from './plugins/stress-plugin';
 
 export interface Options {
 	enableHTTPAPIPlugin: boolean;
 	enableForgerPlugin: boolean;
 	enableMonitorPlugin: boolean;
 	enableReportMisbehaviorPlugin: boolean;
+	enableStress: boolean;
 }
 
 // Temporally disable eslint
@@ -49,6 +53,9 @@ export const getApplication = (
 	}
 	if (options.enableReportMisbehaviorPlugin) {
 		app.registerPlugin(ReportMisbehaviorPlugin, { loadAsChildProcess: true });
+	}
+	if (options.enableStress) {
+		app.registerPlugin(StressPlugin);
 	}
 
 	return app;

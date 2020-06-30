@@ -8,5 +8,6 @@ dist
 tmp
 build
 qa
+qa-scripts
 scripts
 config

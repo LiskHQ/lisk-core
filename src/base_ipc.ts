@@ -109,6 +109,7 @@ export default abstract class BaseIPCCommand extends Command {
 				enableForgerPlugin: false,
 				enableMonitorPlugin: false,
 				enableReportMisbehaviorPlugin: false,
+				enableStress: false,
 			});
 			this._schema = app.getSchema();
 			return;

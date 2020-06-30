@@ -179,6 +179,10 @@ export default class StartCommand extends Command {
 			env: 'LISK_ENABLE_MONITOR_PLUGIN',
 			default: false,
 		}),
+		'enable-stress': flagParser.boolean({
+			description: 'Enable Stress Plugin.',
+			default: false,
+		}),
 	};
 
 	// eslint-disable-next-line @typescript-eslint/require-await
@@ -297,6 +301,7 @@ export default class StartCommand extends Command {
 				enableForgerPlugin: flags['enable-forger-plugin'],
 				enableMonitorPlugin: flags['enable-monitor-plugin'],
 				enableReportMisbehaviorPlugin: flags['enable-report-misbehavior-plugin'],
+				enableStress: flags['enable-stress'],
 			});
 			await app.run();
 		} catch (errors) {
