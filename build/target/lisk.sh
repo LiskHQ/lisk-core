@@ -112,6 +112,23 @@ blockheight() {
 	echo -e "Current Block Height:" "$HEIGHT"
 }
 
+networkheight() {
+	if [ "$NETWORK" == "main" ] ; then
+		NETWORK_NODEHEIGHT=`curl -s https://node.lisk.io/api/node/status | jq -r '.data.height'` 2>/dev/null
+	elif [ "$NETWORK" == "test" ] ; then
+		NETWORK_NODEHEIGHT=`curl -s https://testnet.lisk.io/api/node/status | jq -r '.data.height'` 2>/dev/null
+	elif [ "$NETWORK" == "beta" ] ; then
+		NETWORK_NODEHEIGHT=`curl -s https://betanet.lisk.io/api/node/status | jq -r '.data.height'` 2>/dev/null
+	else
+		echo "$NETWORK is not a valid network."
+		exit 1
+    fi
+
+	if [ -n "$NETWORK_NODEHEIGHT" ]; then
+		echo -e "$LISK_NETWORK Current Block Height:" "$NETWORK_NODEHEIGHT"
+	fi
+}
+
 network() {
 	NETWORK=${LISK_NETWORK%net}
 	echo "Lisk configured for $LISK_NETWORK" |tee -a "$SH_LOG_FILE"
@@ -368,6 +385,7 @@ check_status() {
 	if [ "$STATUS" -eq 0  ]; then
 		echo "[+] Lisk is running as PID: $PID"
 		blockheight
+		networkheight
 	else
 		echo "[-] Lisk is not running"
 		exit 1
