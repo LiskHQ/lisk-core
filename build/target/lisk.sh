@@ -112,6 +112,16 @@ blockheight() {
 	echo -e "Current Block Height:" "$HEIGHT"
 }
 
+forging_status() {
+	FORGINGSTATUS=`curl -s http://127.0.0.1:7000/api/node/status/forging -H 'cache-control: no-cache' -H 'content-type: application/json' | jq -r .data[0].forging` 2>/dev/null
+
+	if [ -n "$FORGINGSTATUS" ]; then
+		echo -e "Forging status:" "$FORGINGSTATUS"	
+	else
+		echo -e "Failed to validate forging status"
+	fi
+}
+
 networkheight() {
 	if [ "$NETWORK" == "main" ] ; then
 		NETWORK_NODEHEIGHT=`curl -s https://node.lisk.io/api/node/status | jq -r '.data.height'` 2>/dev/null
@@ -122,7 +132,7 @@ networkheight() {
 	else
 		echo "$NETWORK is not a valid network."
 		exit 1
-    fi
+	fi
 
 	if [ -n "$NETWORK_NODEHEIGHT" ]; then
 		echo -e "$LISK_NETWORK Current Block Height:" "$NETWORK_NODEHEIGHT"
