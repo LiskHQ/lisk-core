@@ -1,9 +1,8 @@
-`core warranty`
-===============
+# `core warranty`
 
 Displays warranty notice.
 
-* [`core warranty`](#core-warranty)
+- [`core warranty`](#core-warranty)
 
 ## `core warranty`
 

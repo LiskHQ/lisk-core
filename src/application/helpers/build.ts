@@ -18,10 +18,7 @@ import * as path from 'path';
 export const getBuildVersion = (): string => {
 	// .build file is being created in the root folder during build process.
 	try {
-		return fs
-			.readFileSync(path.join(__dirname, '../../', '.build'), 'utf8')
-			.toString()
-			.trim();
+		return fs.readFileSync(path.join(__dirname, '../../', '.build'), 'utf8').toString().trim();
 	} catch (error) {
 		throw new Error('.build file not found.');
 	}

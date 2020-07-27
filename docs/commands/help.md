@@ -1,9 +1,8 @@
-`core help`
-===========
+# `core help`
 
 display help for core
 
-* [`core help [COMMAND]`](#core-help-command)
+- [`core help [COMMAND]`](#core-help-command)
 
 ## `core help [COMMAND]`
 

@@ -15,6 +15,7 @@ docker-compose up -d
 docker-compose ps
 docker-compose logs
 ```
+
 (see https://docs.docker.com/compose/reference/overview/)
 
 or use the `Makefile` (you will need to install `make`) for convenience:

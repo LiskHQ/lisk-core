@@ -14,7 +14,6 @@
  *
  */
 import * as crypto from 'crypto';
-import { bufferToHex } from '@liskhq/lisk-cryptography';
 import * as axios from 'axios';
 import * as fs from 'fs-extra';
 
@@ -38,9 +37,9 @@ export const getDownloadedFileInfo = (url: string, downloadDir: string): FileInf
 };
 
 export const download = async (url: string, dir: string): Promise<void> => {
-    const { filePath, fileDir } = getDownloadedFileInfo(url,  dir);
-    
-    if (fs.existsSync(filePath)) {
+	const { filePath, fileDir } = getDownloadedFileInfo(url, dir);
+
+	if (fs.existsSync(filePath)) {
 		fs.unlinkSync(filePath);
 	}
 
@@ -49,11 +48,11 @@ export const download = async (url: string, dir: string): Promise<void> => {
 	const response = await axios.default({
 		url,
 		method: 'GET',
-        responseType: 'stream',
-        maxContentLength: 5000,
-    });
+		responseType: 'stream',
+		maxContentLength: 5000,
+	});
 
-    response.data.pipe(writeStream);
+	response.data.pipe(writeStream);
 
 	return new Promise<void>((resolve, reject) => {
 		writeStream.on('finish', resolve);
@@ -63,10 +62,10 @@ export const download = async (url: string, dir: string): Promise<void> => {
 
 export const verifyChecksum = async (filePath: string, expectedChecksum: string): Promise<void> => {
 	const fileStream = fs.createReadStream(filePath);
-    const dataHash = crypto.createHash('sha256');
+	const dataHash = crypto.createHash('sha256');
 	const fileHash = await new Promise<Buffer>((resolve, reject) => {
 		fileStream.on('data', (datum: Buffer) => {
-            dataHash.update(datum);
+			dataHash.update(datum);
 		});
 		fileStream.on('error', error => {
 			reject(error);
@@ -76,7 +75,7 @@ export const verifyChecksum = async (filePath: string, expectedChecksum: string)
 		});
 	});
 
-    const fileChecksum = bufferToHex(fileHash);
+	const fileChecksum = fileHash.toString('hex');
 	if (fileChecksum !== expectedChecksum) {
 		throw new Error(
 			`File checksum: ${fileChecksum} mismatched with expected checksum: ${expectedChecksum}`,
@@ -89,13 +88,11 @@ export const downloadAndValidate = async (url: string, dir: string): Promise<voi
 	await download(`${url}.SHA256`, dir);
 
 	const { filePath } = getDownloadedFileInfo(url, dir);
-    const content = fs.readFileSync(`${filePath}.SHA256`, 'utf8');
+	const content = fs.readFileSync(`${filePath}.SHA256`, 'utf8');
 
-    if(!content) {
-        throw new Error(
-			`Invalid filepath: ${filePath}`,
-		);
-    }
+	if (!content) {
+		throw new Error(`Invalid filepath: ${filePath}`);
+	}
 	const checksum = content.split(' ')[0];
 
 	await verifyChecksum(filePath, checksum);

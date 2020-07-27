@@ -28,10 +28,7 @@ const getLastCommitIdFromGit = (): string => {
 const getLastCommitIdFromRevisionFile = (): string => {
 	// REVISION file is being created in the root folder during build process.
 	try {
-		return fs
-			.readFileSync('REVISION')
-			.toString()
-			.trim();
+		return fs.readFileSync('REVISION').toString().trim();
 	} catch (error) {
 		throw new Error('REVISION file not found.');
 	}

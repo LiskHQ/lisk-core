@@ -21,30 +21,30 @@ import * as downloadUtil from '../../src/utils/download';
 
 describe('download utils', () => {
 	const url = 'https://downloads.lisk.io/lisk/betanet/blockchain.db.gz';
-    const outDir = '~/.cache/lisk-core';
-    
+	const outDir = '~/.cache/lisk-core';
+
 	describe('#download', () => {
 		let existsSyncStub: SinonStub;
 		let statSyncStub: SinonStub;
 
 		beforeEach(() => {
 			sandbox.stub(axios, 'default');
-            existsSyncStub = sandbox.stub(fs, 'existsSync');
-            statSyncStub = sandbox.stub(fs, 'statSync');
+			existsSyncStub = sandbox.stub(fs, 'existsSync');
+			statSyncStub = sandbox.stub(fs, 'statSync');
 			sandbox.stub(fs, 'unlinkSync').returns();
 		});
 
 		it('should return true if downloaded file', () => {
-            existsSyncStub.returns(true);
-            statSyncStub.returns({ birthtime: new Date() });
+			existsSyncStub.returns(true);
+			statSyncStub.returns({ birthtime: new Date() });
 
 			return expect(downloadUtil.download(url, outDir)).returned;
 		});
-    });
-    
-    describe('#downloadLiskAndValidate', () => {
+	});
+
+	describe('#downloadLiskAndValidate', () => {
 		let readFileSyncStub: SinonStub;
-        let verifyChecksumStub: SinonStub;
+		let verifyChecksumStub: SinonStub;
 
 		beforeEach(() => {
 			sandbox.stub(downloadUtil, 'download');
@@ -53,7 +53,7 @@ describe('download utils', () => {
 				.stub(downloadUtil, 'getDownloadedFileInfo')
 				.returns({ fileDir: '', fileName: '', filePath: '' });
 			readFileSyncStub = sandbox.stub(fs, 'readFileSync');
-        });
+		});
 
 		it('should download lisk and validate release', async () => {
 			readFileSyncStub

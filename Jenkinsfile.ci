@@ -29,6 +29,7 @@ pipeline {
 						yarn
 						yarn build
 						npx lerna exec yarn link
+						npx lerna --loglevel error list >../packages
 						'''
 					}
 				}
@@ -41,10 +42,36 @@ pipeline {
 						sh '''
 						npm install --registry https://npm.lisk.io/
 						npm install --global yarn
-						yarn link lisk-sdk
-						yarn link lisk-framework
-						yarn link @liskhq/lisk-framework-http-api-plugin
+						for package in $( cat ../packages ); do
+						  yarn link "$package"
+						done
 						npm run build
+						'''
+					}
+				}
+			}
+		}
+		stage('Lint Core') {
+			steps {
+				dir('lisk-core') {
+					nvm(readFile(".nvmrc").trim()) {
+						sh 'npm run lint'
+					}
+				}
+			}
+		}
+		stage('Format Core') {
+			steps {
+				dir('lisk-core') {
+					nvm(readFile(".nvmrc").trim()) {
+						sh '''
+						npm run format
+						if [ -z "$(git status --untracked-files=no --porcelain)" ]; then
+							echo "All files formatted"
+						else
+							echo "Running format is required"
+							exit 1
+						fi
 						'''
 					}
 				}

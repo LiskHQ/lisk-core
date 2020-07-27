@@ -22,7 +22,10 @@ const outputPublicKeyOptionDescription =
 	'Includes the public key in the output. This option is provided for the convenience of node operators.';
 
 const processInputs = (passphrase: string, password: string, outputPublicKey: boolean) => {
-	const encryptedPassphraseObject = cryptography.encryptPassphraseWithPassword(passphrase, password);
+	const encryptedPassphraseObject = cryptography.encryptPassphraseWithPassword(
+		passphrase,
+		password,
+	);
 	const encryptedPassphrase = cryptography.stringifyEncryptedPassphrase(encryptedPassphraseObject);
 
 	return outputPublicKey
@@ -38,7 +41,7 @@ export default class EncryptCommand extends Command {
 		Encrypts your secret passphrase under a password.
 	`;
 
-    static examples = ['passphrase:encrypt'];
+	static examples = ['passphrase:encrypt'];
 
 	static flags = {
 		password: flagParser.string(commonFlags.password),
@@ -55,9 +58,9 @@ export default class EncryptCommand extends Command {
 
 		const passphrase = passphraseSource ?? (await getPassphraseFromPrompt('passphrase', true));
 		const password = passwordSource ?? (await getPassphraseFromPrompt('password', true));
-        const result = processInputs(passphrase, password, outputPublicKey);
-    
-        this.printJSON(result);
+		const result = processInputs(passphrase, password, outputPublicKey);
+
+		this.printJSON(result);
 	}
 
 	public printJSON(message?: object, pretty = false): void {

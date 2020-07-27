@@ -35,8 +35,7 @@ export default class ExportCommand extends Command {
 		}),
 		output: flagParser.string({
 			char: 'o',
-			description:
-				'The output directory. Default will set to current working directory.',
+			description: 'The output directory. Default will set to current working directory.',
 		}),
 	};
 

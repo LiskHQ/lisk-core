@@ -28,7 +28,6 @@ const capitalise = (text: string): string => `${text.charAt(0).toUpperCase()}${t
 const getPassphraseVerificationFailError = (displayName: string): string =>
 	`${capitalise(displayName)} was not successfully repeated.`;
 
-
 export const getPassphraseFromPrompt = async (
 	displayName = 'passphrase',
 	shouldConfirm = false,

@@ -67,4 +67,9 @@ export const flags: FlagMap = {
 		char: 'w',
 		description: passwordDescription,
 	},
+	dataPath: {
+		char: 'd',
+		description:
+			'Directory path to specify where node data is stored. Environment variable "LISK_DATA_PATH" can also be used.',
+	},
 };

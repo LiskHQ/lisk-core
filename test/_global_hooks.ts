@@ -20,4 +20,3 @@ afterEach(() => {
 	sandbox.restore();
 	sandbox.reset();
 });
-

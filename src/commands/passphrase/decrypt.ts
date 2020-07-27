@@ -24,7 +24,10 @@ interface Args {
 
 const processInputs = (password: string, encryptedPassphrase: string) => {
 	const encryptedPassphraseObject = cryptography.parseEncryptedPassphrase(encryptedPassphrase);
-	const passphrase = cryptography.decryptPassphraseWithPassword(encryptedPassphraseObject, password);
+	const passphrase = cryptography.decryptPassphraseWithPassword(
+		encryptedPassphraseObject,
+		password,
+	);
 
 	return { passphrase };
 };
@@ -55,13 +58,9 @@ export default class DecryptCommand extends Command {
 			args,
 			flags: { password: passwordSource },
 		} = this.parse(DecryptCommand);
-		
 		const { encryptedPassphrase }: Args = args;
-		
 		const password = passwordSource ?? (await getPassphraseFromPrompt('password', true));
-		
-        const result = processInputs(password, encryptedPassphrase as string);
-		
+		const result = processInputs(password, encryptedPassphrase as string);
 		this.printJSON(result);
 	}
 

@@ -25,13 +25,11 @@ import pJSON = require('../../package.json');
 
 describe('start', () => {
 	const readJSONStub = sandbox.stub();
-	readJSONStub
-		.withArgs(`./config.json`)
-		.resolves({
-			logger: {
-				consoleLogLevel: 'error',
-			},
-		});
+	readJSONStub.withArgs('./config.json').resolves({
+		logger: {
+			consoleLogLevel: 'error',
+		},
+	});
 
 	const setupTest = () =>
 		test
@@ -75,9 +73,7 @@ describe('start', () => {
 		setupTest()
 			.command(['start', '--enable-ipc'])
 			.it('should update the config value', () => {
-				const [,
-					usedConfig,
-				] = (application.getApplication as sinon.SinonStub).getCall(0).args;
+				const [, usedConfig] = (application.getApplication as sinon.SinonStub).getCall(0).args;
 				expect(usedConfig.ipc.enabled).to.equal(true);
 			});
 	});
@@ -86,9 +82,7 @@ describe('start', () => {
 		setupTest()
 			.command(['start', '--config=./config.json'])
 			.it('should update the config value', () => {
-				const [,
-					usedConfig,
-				] = (application.getApplication as sinon.SinonStub).getCall(0).args;
+				const [, usedConfig] = (application.getApplication as sinon.SinonStub).getCall(0).args;
 				expect(readJSONStub).to.have.been.calledWithExactly('./config.json');
 				expect(usedConfig.logger.consoleLogLevel).to.equal('error');
 			});
@@ -98,9 +92,7 @@ describe('start', () => {
 		setupTest()
 			.command(['start', '--console-log=trace'])
 			.it('should update the config value', () => {
-				const [,
-					usedConfig,
-				] = (application.getApplication as sinon.SinonStub).getCall(0).args;
+				const [, usedConfig] = (application.getApplication as sinon.SinonStub).getCall(0).args;
 				expect(usedConfig.logger.consoleLogLevel).to.equal('trace');
 			});
 
@@ -108,9 +100,7 @@ describe('start', () => {
 			.env({ LISK_CONSOLE_LOG_LEVEL: 'error' })
 			.command(['start'])
 			.it('should update the config value', () => {
-				const [,
-					usedConfig,
-				] = (application.getApplication as sinon.SinonStub).getCall(0).args;
+				const [, usedConfig] = (application.getApplication as sinon.SinonStub).getCall(0).args;
 				expect(usedConfig.logger.consoleLogLevel).to.equal('error');
 			});
 	});
@@ -119,9 +109,7 @@ describe('start', () => {
 		setupTest()
 			.command(['start', '--log=trace'])
 			.it('should update the config value', () => {
-				const [,
-					usedConfig,
-				] = (application.getApplication as sinon.SinonStub).getCall(0).args;
+				const [, usedConfig] = (application.getApplication as sinon.SinonStub).getCall(0).args;
 				expect(usedConfig.logger.fileLogLevel).to.equal('trace');
 			});
 
@@ -129,9 +117,7 @@ describe('start', () => {
 			.env({ LISK_FILE_LOG_LEVEL: 'trace' })
 			.command(['start'])
 			.it('should update the config value', () => {
-				const [,
-					usedConfig,
-				] = (application.getApplication as sinon.SinonStub).getCall(0).args;
+				const [, usedConfig] = (application.getApplication as sinon.SinonStub).getCall(0).args;
 				expect(usedConfig.logger.fileLogLevel).to.equal('trace');
 			});
 	});
@@ -140,9 +126,7 @@ describe('start', () => {
 		setupTest()
 			.command(['start', '--port=1111'])
 			.it('should update the config value', () => {
-				const [,
-					usedConfig,
-				] = (application.getApplication as sinon.SinonStub).getCall(0).args;
+				const [, usedConfig] = (application.getApplication as sinon.SinonStub).getCall(0).args;
 				expect(usedConfig.network.port).to.equal(1111);
 			});
 
@@ -150,9 +134,7 @@ describe('start', () => {
 			.env({ LISK_PORT: '1234' })
 			.command(['start'])
 			.it('should update the config value', () => {
-				const [,
-					usedConfig,
-				] = (application.getApplication as sinon.SinonStub).getCall(0).args;
+				const [, usedConfig] = (application.getApplication as sinon.SinonStub).getCall(0).args;
 				expect(usedConfig.network.port).to.equal(1234);
 			});
 	});
@@ -161,20 +143,14 @@ describe('start', () => {
 		setupTest()
 			.command(['start', '--peers=localhost:12234'])
 			.it('should update the config value', () => {
-				const [,
-					usedConfig,
-				] = (application.getApplication as sinon.SinonStub).getCall(0).args;
-				expect(usedConfig.network.seedPeers).to.eql([
-					{ ip: 'localhost', port: 12234 },
-				]);
+				const [, usedConfig] = (application.getApplication as sinon.SinonStub).getCall(0).args;
+				expect(usedConfig.network.seedPeers).to.eql([{ ip: 'localhost', port: 12234 }]);
 			});
 
 		setupTest()
 			.command(['start', '--peers=localhost:12234,74.49.3.35:2238'])
 			.it('should update the config value', () => {
-				const [,
-					usedConfig,
-				] = (application.getApplication as sinon.SinonStub).getCall(0).args;
+				const [, usedConfig] = (application.getApplication as sinon.SinonStub).getCall(0).args;
 				expect(usedConfig.network.seedPeers).to.eql([
 					{ ip: 'localhost', port: 12234 },
 					{ ip: '74.49.3.35', port: 2238 },

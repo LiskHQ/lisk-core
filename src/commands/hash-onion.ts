@@ -13,8 +13,7 @@
  *
  */
 
-import { cryptography } from 'lisk-sdk';
-import { isValidInteger } from '@liskhq/lisk-validator';
+import { cryptography, validator } from 'lisk-sdk';
 import Command, { flags as flagParser } from '@oclif/command';
 import * as fs from 'fs-extra';
 import * as path from 'path';
@@ -49,11 +48,11 @@ export default class HashOnionCommand extends Command {
 			flags: { output, count, distance },
 		} = this.parse(HashOnionCommand);
 
-		if (distance <= 0 || !isValidInteger(distance)) {
+		if (distance <= 0 || !validator.isValidInteger(distance)) {
 			throw new Error('Invalid distance. Distance has to be positive integer');
 		}
 
-		if (count <= 0 || !isValidInteger(count)) {
+		if (count <= 0 || !validator.isValidInteger(count)) {
 			throw new Error('Invalid count. Count has to be positive integer');
 		}
 
@@ -72,7 +71,7 @@ export default class HashOnionCommand extends Command {
 		if (output) {
 			fs.writeJSONSync(output, result);
 		} else {
-            this.printJSON(result);
+			this.printJSON(result);
 		}
 	}
 

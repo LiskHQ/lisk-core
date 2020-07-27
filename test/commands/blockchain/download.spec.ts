@@ -18,9 +18,7 @@ import * as sandbox from 'sinon';
 import { Application } from 'lisk-sdk';
 import * as application from '../../../src/application';
 import * as downloadUtils from '../../../src/utils/download';
-import {
-	getDefaultPath,
-} from '../../../src/utils/path';
+import { getDefaultPath } from '../../../src/utils/path';
 
 const SNAPSHOT_URL = 'https://downloads.lisk.io/lisk/mainnet/blockchain.db.gz';
 
@@ -49,15 +47,18 @@ describe('blockchain:download', () => {
 			.command(['blockchain:download'])
 			.it('should call downloadAndValidate', () => {
 				expect(downloadAndValidateStub).to.be.calledOnceWithExactly(SNAPSHOT_URL, dataPath);
-			})
+			});
 	});
 
 	describe('when downloading with network flag', () => {
 		setupTest()
 			.command(['blockchain:download', '--network=betanet'])
 			.it('should call downloadAndValidate', () => {
-				expect(downloadAndValidateStub).to.be.calledWithExactly(SNAPSHOT_URL.replace('mainnet', 'betanet'), dataPath);
-			})
+				expect(downloadAndValidateStub).to.be.calledWithExactly(
+					SNAPSHOT_URL.replace('mainnet', 'betanet'),
+					dataPath,
+				);
+			});
 	});
 
 	describe('when downloading with output flag', () => {
@@ -65,7 +66,7 @@ describe('blockchain:download', () => {
 			.command(['blockchain:download', '--output=yourpath'])
 			.it('should call downloadAndValidate', () => {
 				expect(downloadAndValidateStub).to.be.calledWithExactly(SNAPSHOT_URL, 'yourpath');
-			})
+			});
 	});
 
 	describe('when downloading with url flag', () => {
@@ -73,6 +74,6 @@ describe('blockchain:download', () => {
 			.command(['blockchain:download', '--url=yoururl'])
 			.it('should call downloadAndValidate', () => {
 				expect(downloadAndValidateStub).to.be.calledWithExactly('yoururl', dataPath);
-			})
+			});
 	});
 });

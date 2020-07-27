@@ -13,5 +13,5 @@
  *
  */
 
- export * as config from './config.json';
- export * as genesisBlock from './genesis_block.json';
+export * as config from './config.json';
+export * as genesisBlock from './genesis_block.json';

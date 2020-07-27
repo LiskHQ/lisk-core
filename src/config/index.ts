@@ -13,8 +13,8 @@
  *
  */
 
- export * as devnet from './devnet';
- export * as alphanet from './alphanet';
- export * as betanet from './betanet';
- export * as testnet from './testnet';
- export * as mainnet from './mainnet';
+export * as devnet from './devnet';
+export * as alphanet from './alphanet';
+export * as betanet from './betanet';
+export * as testnet from './testnet';
+export * as mainnet from './mainnet';
