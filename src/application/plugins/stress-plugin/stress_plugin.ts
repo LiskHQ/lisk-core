@@ -15,7 +15,6 @@
 import {
 	BasePlugin,
 	PluginInfo,
-	EventsArray,
 	ActionsDefinition,
 	BaseChannel,
 	cryptography,
@@ -82,7 +81,7 @@ export class StressPlugin extends BasePlugin {
 	}
 
 	// eslint-disable-next-line class-methods-use-this
-	public get events(): EventsArray {
+	public get events(): string[] {
 		return [];
 	}
 
