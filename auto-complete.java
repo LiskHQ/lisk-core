@@ -1,0 +1,1 @@
+$ lisk-core autocomplete
