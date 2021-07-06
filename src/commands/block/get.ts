@@ -54,6 +54,7 @@ export default class GetCommand extends BaseIPCCommand {
 
 			this.printJSON(this._client.block.toJSON(block));
 		} catch (errors) {
+			// eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
 			const errorMessage = Array.isArray(errors)
 				? errors.map(err => (err as Error).message).join(',')
 				: errors;

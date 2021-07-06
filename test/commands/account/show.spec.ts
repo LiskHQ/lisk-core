@@ -19,6 +19,11 @@ import * as readerUtils from '../../../src/utils/reader';
 import ShowCommand from '../../../src/commands/account/show';
 import { getConfig } from '../../utils/config';
 
+jest.mock('lisk-sdk', () => {
+	const actualSdk = jest.requireActual('lisk-sdk');
+	return { ...actualSdk, cryptography: { ...actualSdk.cryptography } };
+});
+
 describe('account:show', () => {
 	const passphraseInput =
 		'whale acoustic sword work scene frame assume ensure hawk federal upgrade angry';

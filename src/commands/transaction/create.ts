@@ -243,7 +243,12 @@ export default class CreateCommand extends BaseIPCCommand {
 		}
 
 		if (json) {
-			this.printJSON(this.transactionToJSON(transactionObject));
+			this.printJSON({
+				transaction: this.encodeTransaction(transactionObject).toString('hex'),
+			});
+			this.printJSON({
+				transaction: this.transactionToJSON(transactionObject),
+			});
 		} else {
 			this.printJSON({
 				transaction: this.encodeTransaction(transactionObject).toString('hex'),

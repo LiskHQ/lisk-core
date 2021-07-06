@@ -77,8 +77,8 @@ export const getGenesisBlockAndConfig = async (
 	} = getDefaultNetworkConfigFilesPath(network);
 
 	// Get config from network config or config specified
-	const genesisBlock: Record<string, unknown> = await fs.readJSON(defaultGenesisBlockFilePath);
-	const config: PartialApplicationConfig = await fs.readJSON(defaultConfigFilepath);
+	const genesisBlock = (await fs.readJSON(defaultGenesisBlockFilePath)) as Record<string, unknown>;
+	const config = (await fs.readJSON(defaultConfigFilepath)) as PartialApplicationConfig;
 
 	return { genesisBlock, config };
 };

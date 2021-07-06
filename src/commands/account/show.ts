@@ -57,6 +57,7 @@ export default class ShowCommand extends Command {
 
 		this.log(
 			JSON.stringify(
+				// eslint-disable-next-line @typescript-eslint/no-unsafe-member-access
 				processInput(passphrase, this.config.pjson.lisk.addressPrefix),
 				undefined,
 				' ',

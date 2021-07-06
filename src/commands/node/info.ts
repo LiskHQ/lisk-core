@@ -31,6 +31,7 @@ export default class InfoCommand extends BaseIPCCommand {
 			const nodeInfo = await this._client.node.getNodeInfo();
 			this.printJSON(nodeInfo);
 		} catch (errors) {
+			// eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
 			const errorMessage = Array.isArray(errors)
 				? errors.map(err => (err as Error).message).join(',')
 				: errors;

@@ -84,6 +84,14 @@ USAGE
 - [`lisk-core start`](docs/commands/start.md) - Start Lisk Core Node.
 - [`lisk-core transaction`](docs/commands/transaction.md) - Commands relating to Lisk Core transactions.
 
+## Autocomplete
+
+To use autocomplete feature for commands & flags follow the instructions after running
+
+```sh
+$ lisk-core autocomplete
+```
+
 <!-- commandsstop -->
 
 ## Managing Lisk Node

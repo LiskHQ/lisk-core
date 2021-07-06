@@ -58,12 +58,13 @@ export const getPasswordFromPrompt = async (
 		});
 	}
 
+	// eslint-disable-next-line @typescript-eslint/no-unsafe-assignment, @typescript-eslint/no-unsafe-member-access, @typescript-eslint/no-unsafe-call
 	const { password, passwordRepeat } = await inquirer.prompt(questions);
 	if (!password || (shouldConfirm && password !== passwordRepeat)) {
 		throw new ValidationError(getPromptVerificationFailError(displayName));
 	}
 
-	return password;
+	return password as string;
 };
 
 export const getPassphraseFromPrompt = async (
@@ -85,6 +86,7 @@ export const getPassphraseFromPrompt = async (
 		});
 	}
 
+	// eslint-disable-next-line @typescript-eslint/no-unsafe-assignment, @typescript-eslint/no-unsafe-member-access, @typescript-eslint/no-unsafe-call
 	const { passphrase, passphraseRepeat } = await inquirer.prompt(questions);
 
 	if (!passphrase || (shouldConfirm && passphrase !== passphraseRepeat)) {
@@ -148,6 +150,7 @@ const castValue = (
 	schemaType: string,
 ): number | string | Record<string, unknown> => {
 	if (schemaType === 'object') {
+		// eslint-disable-next-line @typescript-eslint/no-unsafe-return
 		return JSON.parse(strVal);
 	}
 	return Number.isInteger(Number(strVal)) ? Number(strVal) : strVal;
@@ -230,6 +233,7 @@ export const getAssetFromPrompt = async (
 	const questions = prepareQuestions(assetSchema);
 	let isTypeConfirm = false;
 	// Prompt user with prepared questions
+	// eslint-disable-next-line @typescript-eslint/no-unsafe-assignment, @typescript-eslint/no-unsafe-member-access, @typescript-eslint/no-unsafe-call
 	const result = await inquirer.prompt(questions).then(async (answer: { [x: string]: string }) => {
 		isTypeConfirm = typeof answer.askAgain === 'boolean';
 		// if its a multiple questions prompt user again

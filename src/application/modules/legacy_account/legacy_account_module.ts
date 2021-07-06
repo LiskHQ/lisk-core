@@ -80,6 +80,6 @@ export class LegacyAccountModule extends BaseModule {
 		for (const { address } of unregisteredAddresses) {
 			await stateStore.account.del(address);
 		}
-		stateStore.chain.set(CHAIN_STATE_UNREGISTERED_ADDRESSES, encodedUnregisteredAddresses);
+		await stateStore.chain.set(CHAIN_STATE_UNREGISTERED_ADDRESSES, encodedUnregisteredAddresses);
 	}
 }

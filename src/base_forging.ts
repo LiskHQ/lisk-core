@@ -52,7 +52,7 @@ export class BaseForgingCommand extends BaseIPCCommand {
 	async run(): Promise<void> {
 		const { args, flags } = this.parse(this.constructor as typeof BaseForgingCommand);
 		const { address, height, maxHeightPreviouslyForged, maxHeightPrevoted } = args as Args;
-		let password;
+		let password: string;
 
 		if (
 			this.forging &&
@@ -68,6 +68,7 @@ export class BaseForgingCommand extends BaseIPCCommand {
 		if (flags.password) {
 			password = flags.password;
 		} else {
+			// eslint-disable-next-line @typescript-eslint/no-unsafe-assignment, @typescript-eslint/no-unsafe-member-access, @typescript-eslint/no-unsafe-call
 			const answers = await inquirer.prompt([
 				{
 					type: 'password',
@@ -76,7 +77,7 @@ export class BaseForgingCommand extends BaseIPCCommand {
 					mask: '*',
 				},
 			]);
-			password = answers.password;
+			password = (answers as { password: string }).password;
 		}
 		if (!this._client) {
 			this.error('APIClient is not initialized.');

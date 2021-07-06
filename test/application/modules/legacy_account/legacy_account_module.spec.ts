@@ -58,7 +58,7 @@ describe('LegacyAccountModule', () => {
 			reducerHandler: {
 				invoke: jest.fn().mockResolvedValue(legacyBalance),
 			},
-			stateStore: new testing.StateStoreMock({
+			stateStore: new testing.mocks.StateStoreMock({
 				accounts: [legacyAccount1, legacyAccount2, newAccount],
 			}),
 		} as any;

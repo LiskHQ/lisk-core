@@ -35,9 +35,9 @@ export default class SendCommand extends BaseIPCCommand {
 	];
 
 	async run(): Promise<void> {
-		const {
-			args: { transaction },
-		} = this.parse(SendCommand);
+		const { args } = this.parse(SendCommand);
+		const { transaction } = args as { transaction: string };
+
 		if (!validator.isHexString(transaction)) {
 			throw new Error('The transaction must be provided as a encoded hex string.');
 		}
@@ -45,7 +45,10 @@ export default class SendCommand extends BaseIPCCommand {
 			this.error('APIClient is not initialized.');
 		}
 
-		const { transactionId } = await this._client.invoke('app:postTransaction', { transaction });
-		this.log(`Transaction with id: '${transactionId as string}' received by node.`);
+		const { transactionId } = await this._client.invoke<{ transactionId: string }>(
+			'app:postTransaction',
+			{ transaction },
+		);
+		this.log(`Transaction with id: '${transactionId}' received by node.`);
 	}
 }

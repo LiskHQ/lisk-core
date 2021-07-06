@@ -53,6 +53,7 @@ export default class ResetCommand extends Command {
 		}
 
 		if (!skipPrompt) {
+			// eslint-disable-next-line @typescript-eslint/no-unsafe-assignment, @typescript-eslint/no-unsafe-call, @typescript-eslint/no-unsafe-member-access
 			const { answer } = await inquirer.prompt([
 				{
 					name: 'answer',

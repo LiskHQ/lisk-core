@@ -10,3 +10,4 @@ build
 qa
 scripts
 config
+.eslintrc.js

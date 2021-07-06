@@ -16,3 +16,4 @@
 require('jest-extended');
 
 process.env.NODE_ENV = 'test';
+process.env.WS_SERVER_URL = 'ws://localhost:8080/ws';

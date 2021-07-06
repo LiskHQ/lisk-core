@@ -19,6 +19,11 @@ import * as Config from '@oclif/config';
 import HashOnionCommand from '../../src/commands/hash-onion';
 import { getConfig } from '../utils/config';
 
+jest.mock('lisk-sdk', () => {
+	const actualSdk = jest.requireActual('lisk-sdk');
+	return { ...actualSdk, cryptography: { ...actualSdk.cryptography } };
+});
+
 describe('hash-onion command', () => {
 	let stdout: string[];
 	let stderr: string[];

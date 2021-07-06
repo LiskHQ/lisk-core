@@ -83,7 +83,7 @@ export default class HashOnionCommand extends Command {
 		}
 	}
 
-	public printJSON(message?: object, pretty = false): void {
+	public printJSON(message?: Record<string, unknown>, pretty = false): void {
 		if (pretty) {
 			this.log(JSON.stringify(message, undefined, '  '));
 		} else {

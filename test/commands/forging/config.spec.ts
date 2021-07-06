@@ -19,6 +19,11 @@ import ConfigCommand from '../../../src/commands/forging/config';
 import { getConfig } from '../../utils/config';
 import * as readerUtils from '../../../src/utils/reader';
 
+jest.mock('lisk-sdk', () => {
+	const actualSdk = jest.requireActual('lisk-sdk');
+	return { ...actualSdk, cryptography: { ...actualSdk.cryptography } };
+});
+
 describe('forging:config command', () => {
 	const address = '67f7c759b8533acf4f25b6892dbda04323507b32';
 	const encryptedPassphraseString =

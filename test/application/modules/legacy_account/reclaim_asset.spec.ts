@@ -61,7 +61,7 @@ describe('ReclaimAsset', () => {
 				amount: balanceToClaim,
 			},
 			reducerHandler: reducerHandlerStub,
-			stateStore: new testing.StateStoreMock({ accounts: [sender], chain: chainMockData }),
+			stateStore: new testing.mocks.StateStoreMock({ accounts: [sender], chain: chainMockData }),
 			transaction: { senderPublicKey: defaultAccount.publicKey },
 		} as any;
 	});
@@ -82,7 +82,7 @@ describe('ReclaimAsset', () => {
 
 	describe('apply', () => {
 		it('should throw error when chain state store does not have unregistered addresses', async () => {
-			reclaimAssetInput.stateStore = new testing.StateStoreMock({
+			reclaimAssetInput.stateStore = new testing.mocks.StateStoreMock({
 				accounts: [sender],
 				chain: {},
 			}) as any;
@@ -99,7 +99,7 @@ describe('ReclaimAsset', () => {
 				unregisteredAddresses,
 			);
 
-			reclaimAssetInput.stateStore = new testing.StateStoreMock({
+			reclaimAssetInput.stateStore = new testing.mocks.StateStoreMock({
 				accounts: [sender],
 				chain: chainMockData,
 			}) as any;
@@ -116,7 +116,7 @@ describe('ReclaimAsset', () => {
 				unregisteredAddresses,
 			);
 
-			reclaimAssetInput.stateStore = new testing.StateStoreMock({
+			reclaimAssetInput.stateStore = new testing.mocks.StateStoreMock({
 				accounts: [sender],
 				chain: chainMockData,
 			}) as any;

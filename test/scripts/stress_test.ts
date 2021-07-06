@@ -13,9 +13,7 @@
  */
 /* eslint-disable no-console */
 
-import * as os from 'os';
-import { IPCChannel } from 'lisk-sdk';
-import { getDefaultPath } from '../../src/utils/path';
+import { apiClient } from 'lisk-sdk';
 import { PassphraseAndKeys, createAccount, genesisAccount } from './utils/accounts';
 import {
 	sendTokenTransferTransactions,
@@ -24,12 +22,10 @@ import {
 	getBeddows,
 	sendMultiSigRegistrationTransaction,
 	sendTransferTransactionFromMultiSigAccount,
-	// sendReclaimTransactions,
 } from './utils/transactions/send';
 
 const TRANSACTIONS_PER_ACCOUNT = 64;
 const ITERATIONS = process.env.ITERATIONS ?? '1';
-const DATAPATH = process.env.DATAPATH ?? getDefaultPath();
 const STRESS_COUNT = TRANSACTIONS_PER_ACCOUNT * parseInt(ITERATIONS, 10);
 
 const chunkArray = (myArray: PassphraseAndKeys[], chunkSize = TRANSACTIONS_PER_ACCOUNT) => {
@@ -40,51 +36,30 @@ const chunkArray = (myArray: PassphraseAndKeys[], chunkSize = TRANSACTIONS_PER_A
 	return [myArray.slice(0, chunkSize), ...chunkArray(myArray.slice(chunkSize), chunkSize)];
 };
 
-const getSocketsPath = (dataPath: string) => {
-	const resolvedPath = dataPath.replace('~', os.homedir());
-	const socketsDir = `${resolvedPath}/tmp/sockets`;
-
-	return {
-		root: `unix://${socketsDir}`,
-		pub: `unix://${socketsDir}/lisk_pub.sock`,
-		sub: `unix://${socketsDir}/lisk_sub.sock`,
-		rpc: `unix://${socketsDir}/bus_rpc_socket.sock`,
-	};
-};
-
-const startIPCChannel = async (): Promise<IPCChannel> => {
-	const events: string[] = [];
-	const actions = {};
-	const socketsPath = getSocketsPath(DATAPATH);
-	const channel = new IPCChannel('QAChannel', events, actions, { socketsPath });
-
-	await channel.startAndListen();
-
-	return channel;
-};
-
 const wait = async (ms = 10000) => new Promise(resolve => setTimeout(() => resolve(), ms));
 
 const start = async (count = STRESS_COUNT) => {
-	const channel = await startIPCChannel();
-	const nodeInfo = await channel.invoke<Record<string, unknown>>('app:getNodeInfo');
+	const URL = process.env.WS_SERVER_URL || 'ws://localhost:8080/ws';
+	const client = await apiClient.createWSClient(URL);
+	const nodeInfo = await client.invoke<Record<string, unknown>>('app:getNodeInfo');
 
 	const accounts = [...Array(count)].map(() => createAccount());
 	const accountsLen = accounts.length;
 	// Due to TPool limit of 64 trx/account, fund initial accounts
 	const fundInitialAccount: PassphraseAndKeys[] = accounts.slice(0, TRANSACTIONS_PER_ACCOUNT);
-	await sendTokenTransferTransactions(channel, nodeInfo, fundInitialAccount, genesisAccount);
+	await sendTokenTransferTransactions(nodeInfo, fundInitialAccount, genesisAccount, true, client);
+
 	// Wait for 2 blocks
 	await wait(20000);
 
 	const chunkedAccounts = chunkArray([...accounts]);
 	for (let i = 0; i < chunkedAccounts.length; i += 1) {
 		await sendTokenTransferTransactions(
-			channel,
 			nodeInfo,
 			chunkedAccounts[i],
 			fundInitialAccount[i],
 			false,
+			client,
 		);
 	}
 
@@ -92,7 +67,7 @@ const start = async (count = STRESS_COUNT) => {
 	await wait(20000);
 
 	for (let i = 0; i < accountsLen; i += 1) {
-		await sendDelegateRegistrationTransaction(channel, nodeInfo, accounts[i]);
+		await sendDelegateRegistrationTransaction(nodeInfo, accounts[i], client);
 	}
 
 	console.log('\n');
@@ -106,7 +81,7 @@ const start = async (count = STRESS_COUNT) => {
 				amount: getBeddows('10'),
 			},
 		];
-		await sendVoteTransaction(channel, nodeInfo, accounts[i], votes);
+		await sendVoteTransaction(nodeInfo, accounts[i], votes, client);
 	}
 
 	console.log('\n');
@@ -116,7 +91,7 @@ const start = async (count = STRESS_COUNT) => {
 		const unVotes = [
 			{ delegateAddress: accounts[accountsLen - i - 1].address, amount: getBeddows('-10') },
 		];
-		await sendVoteTransaction(channel, nodeInfo, accounts[i], unVotes);
+		await sendVoteTransaction(nodeInfo, accounts[i], unVotes, client);
 	}
 
 	console.log('\n');
@@ -131,7 +106,7 @@ const start = async (count = STRESS_COUNT) => {
 			numberOfSignatures: 2,
 		};
 		const passphrases = [account1.passphrase, account2.passphrase];
-		await sendMultiSigRegistrationTransaction(channel, nodeInfo, accounts[i], asset, passphrases);
+		await sendMultiSigRegistrationTransaction(nodeInfo, accounts[i], asset, passphrases, client);
 	}
 
 	console.log('\n');
@@ -146,23 +121,16 @@ const start = async (count = STRESS_COUNT) => {
 		};
 		const passphrases = [account1.passphrase, account2.passphrase];
 		await sendTransferTransactionFromMultiSigAccount(
-			channel,
 			nodeInfo,
 			accounts[i],
 			asset,
 			passphrases,
+			client,
 		);
 	}
 
-	// TODO: Use unclaimed account from devnet/alphanet genesis config
-
-	// const accountToReclaim: CreateAccount = createAccount();
-	// await sendReclaimTransactions(channel, nodeInfo, accountToReclaim);
-	// console.log('\n');
-	// await wait();
-
 	console.info('Finished!!');
-	channel.cleanup();
+	client.disconnect();
 };
 
 start().catch(console.error);

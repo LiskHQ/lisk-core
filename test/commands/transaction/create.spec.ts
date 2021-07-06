@@ -420,19 +420,25 @@ describe('transaction:create command', () => {
 						],
 						config,
 					);
-					expect(baseIPC.prototype.printJSON).toHaveBeenCalledTimes(1);
+					expect(baseIPC.prototype.printJSON).toHaveBeenCalledTimes(2);
 					expect(baseIPC.prototype.printJSON).toHaveBeenCalledWith({
-						moduleID: 2,
-						assetID: 0,
-						nonce: '1',
-						fee: '100000000',
-						senderPublicKey: '0fe9a3f1a21b5530f27f87a414b549e79a940bf24fdf2b2f05e7f22aeeecc86a',
-						asset: {
-							amount: '100',
-							data: 'send token',
-							recipientAddress: 'ab0041a7d3f7b2c290b5b834d46bdc7b7eb85815',
+						transaction:
+							'0802100018012080c2d72f2a200fe9a3f1a21b5530f27f87a414b549e79a940bf24fdf2b2f05e7f22aeeecc86a322408641214ab0041a7d3f7b2c290b5b834d46bdc7b7eb858151a0a73656e6420746f6b656e',
+					});
+					expect(baseIPC.prototype.printJSON).toHaveBeenCalledWith({
+						transaction: {
+							moduleID: 2,
+							assetID: 0,
+							nonce: '1',
+							fee: '100000000',
+							senderPublicKey: '0fe9a3f1a21b5530f27f87a414b549e79a940bf24fdf2b2f05e7f22aeeecc86a',
+							asset: {
+								amount: '100',
+								data: 'send token',
+								recipientAddress: 'ab0041a7d3f7b2c290b5b834d46bdc7b7eb85815',
+							},
+							signatures: [],
 						},
-						signatures: [],
 					});
 				});
 			});
@@ -454,21 +460,27 @@ describe('transaction:create command', () => {
 						],
 						config,
 					);
-					expect(baseIPC.prototype.printJSON).toHaveBeenCalledTimes(1);
+					expect(baseIPC.prototype.printJSON).toHaveBeenCalledTimes(2);
 					expect(baseIPC.prototype.printJSON).toHaveBeenCalledWith({
-						moduleID: 2,
-						assetID: 0,
-						nonce: '1',
-						fee: '100000000',
-						senderPublicKey: '0fe9a3f1a21b5530f27f87a414b549e79a940bf24fdf2b2f05e7f22aeeecc86a',
-						asset: {
-							amount: '100',
-							data: 'send token',
-							recipientAddress: 'ab0041a7d3f7b2c290b5b834d46bdc7b7eb85815',
+						transaction:
+							'0802100018012080c2d72f2a200fe9a3f1a21b5530f27f87a414b549e79a940bf24fdf2b2f05e7f22aeeecc86a322408641214ab0041a7d3f7b2c290b5b834d46bdc7b7eb858151a0a73656e6420746f6b656e3a40816039d55d0710f6b412e221b4fc0422a29d5314603c43eeafab0017e4c6bfbd575c5d53b2c0429992922737ec0f8add0767b904b80cfc411021bfdb0b04bc0a',
+					});
+					expect(baseIPC.prototype.printJSON).toHaveBeenCalledWith({
+						transaction: {
+							moduleID: 2,
+							assetID: 0,
+							nonce: '1',
+							fee: '100000000',
+							senderPublicKey: '0fe9a3f1a21b5530f27f87a414b549e79a940bf24fdf2b2f05e7f22aeeecc86a',
+							asset: {
+								amount: '100',
+								data: 'send token',
+								recipientAddress: 'ab0041a7d3f7b2c290b5b834d46bdc7b7eb85815',
+							},
+							signatures: [
+								'816039d55d0710f6b412e221b4fc0422a29d5314603c43eeafab0017e4c6bfbd575c5d53b2c0429992922737ec0f8add0767b904b80cfc411021bfdb0b04bc0a',
+							],
 						},
-						signatures: [
-							'816039d55d0710f6b412e221b4fc0422a29d5314603c43eeafab0017e4c6bfbd575c5d53b2c0429992922737ec0f8add0767b904b80cfc411021bfdb0b04bc0a',
-						],
 					});
 				});
 			});
@@ -637,7 +649,7 @@ describe('transaction:create command', () => {
 						],
 						config,
 					);
-					expect(baseIPC.prototype.printJSON).toHaveBeenCalledTimes(1);
+					expect(baseIPC.prototype.printJSON).toHaveBeenCalledTimes(2);
 					expect(transactions.signTransaction).not.toHaveBeenCalled();
 				});
 			});
@@ -655,21 +667,26 @@ describe('transaction:create command', () => {
 						],
 						config,
 					);
-					expect(baseIPC.prototype.printJSON).toHaveBeenCalledTimes(1);
+					expect(baseIPC.prototype.printJSON).toHaveBeenCalledTimes(2);
 					expect(baseIPC.prototype.printJSON).toHaveBeenCalledWith({
-						moduleID: 2,
-						assetID: 0,
-						nonce: '0',
-						fee: '100000000',
-						senderPublicKey: '0fe9a3f1a21b5530f27f87a414b549e79a940bf24fdf2b2f05e7f22aeeecc86a',
-						asset: {
-							amount: '100',
-							data: 'send token',
-							recipientAddress: 'ab0041a7d3f7b2c290b5b834d46bdc7b7eb85815',
+						transaction: '656e636f646564207472616e73616374696f6e',
+					});
+					expect(baseIPC.prototype.printJSON).toHaveBeenCalledWith({
+						transaction: {
+							moduleID: 2,
+							assetID: 0,
+							nonce: '0',
+							fee: '100000000',
+							senderPublicKey: '0fe9a3f1a21b5530f27f87a414b549e79a940bf24fdf2b2f05e7f22aeeecc86a',
+							asset: {
+								amount: '100',
+								data: 'send token',
+								recipientAddress: 'ab0041a7d3f7b2c290b5b834d46bdc7b7eb85815',
+							},
+							signatures: [
+								'3cc8c8c81097fe59d9df356b3c3f1dd10f619bfabb54f5d187866092c67e0102c64dbe24f357df493cc7ebacdd2e55995db8912245b718d88ebf7f4f4ac01f04',
+							],
 						},
-						signatures: [
-							'3cc8c8c81097fe59d9df356b3c3f1dd10f619bfabb54f5d187866092c67e0102c64dbe24f357df493cc7ebacdd2e55995db8912245b718d88ebf7f4f4ac01f04',
-						],
 					});
 				});
 			});

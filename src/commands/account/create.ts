@@ -69,6 +69,7 @@ export default class CreateCommand extends Command {
 		}
 		const accounts = new Array(numberOfAccounts)
 			.fill(0)
+			// eslint-disable-next-line @typescript-eslint/no-unsafe-member-access
 			.map(() => createAccount(this.config.pjson.lisk.addressPrefix));
 		this.log(JSON.stringify(accounts, undefined, ' '));
 	}

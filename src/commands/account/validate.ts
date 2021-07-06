@@ -16,6 +16,10 @@
 import { Command } from '@oclif/command';
 import { cryptography } from 'lisk-sdk';
 
+interface Args {
+	readonly address: string;
+}
+
 export default class ValidateCommand extends Command {
 	static description = 'Validate base32 address.';
 
@@ -31,10 +35,10 @@ export default class ValidateCommand extends Command {
 
 	// eslint-disable-next-line @typescript-eslint/require-await
 	async run(): Promise<void> {
-		const {
-			args: { address },
-		} = this.parse(ValidateCommand);
+		const { args } = this.parse(ValidateCommand);
 		try {
+			const { address } = args as Args;
+			// eslint-disable-next-line @typescript-eslint/no-unsafe-member-access
 			cryptography.validateBase32Address(address, this.config.pjson.lisk.addressPrefix);
 			const binaryAddress = cryptography.getAddressFromBase32Address(address).toString('hex');
 
@@ -44,6 +48,7 @@ export default class ValidateCommand extends Command {
 				`Address ${address} is a valid base32 address and the corresponding binary address is ${binaryAddress}.`,
 			);
 		} catch (error) {
+			// eslint-disable-next-line @typescript-eslint/no-unsafe-member-access
 			this.error(error.message);
 		}
 	}

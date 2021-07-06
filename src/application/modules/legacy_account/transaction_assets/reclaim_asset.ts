@@ -76,7 +76,7 @@ export class ReclaimAsset extends BaseAsset<Asset> {
 		const excludedClaimedAccount = unregisteredAddresses.filter(
 			account => !account.address.equals(addressWithoutPublickey.address),
 		);
-		stateStore.chain.set(
+		await stateStore.chain.set(
 			CHAIN_STATE_UNREGISTERED_ADDRESSES,
 			codec.encode(unregisteredAddressesSchema, {
 				unregisteredAddresses: excludedClaimedAccount,

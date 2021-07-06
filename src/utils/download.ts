@@ -53,6 +53,7 @@ export const download = async (url: string, dir: string): Promise<void> => {
 		maxContentLength: 5000,
 	});
 
+	// eslint-disable-next-line @typescript-eslint/no-unsafe-member-access, @typescript-eslint/no-unsafe-call
 	response.data.pipe(writeStream);
 
 	return new Promise<void>((resolve, reject) => {
