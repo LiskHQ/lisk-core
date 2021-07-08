@@ -13,8 +13,6 @@ RUN apk --no-cache upgrade && \
 RUN addgroup -g 1100 lisk && \
     adduser -h /home/lisk -s /bin/bash -u 1100 -G lisk -D lisk
 
-COPY coldstart.sh /home/lisk/
-
 USER lisk
 WORKDIR /home/lisk
 
@@ -31,5 +29,5 @@ USER lisk
 RUN mkdir /home/lisk/.lisk
 VOLUME ["/home/lisk/.lisk"]
 
-ENTRYPOINT ["/home/lisk/node_modules/.bin/lisk-core", "start", "--enable-http-api-plugin", "--api-ws"]
-CMD ["--network", "mainnet"]
+ENTRYPOINT ["/home/lisk/node_modules/.bin/lisk-core"]
+CMD ["start", "--network", "mainnet"]

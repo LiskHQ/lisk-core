@@ -1,0 +1,52 @@
+name: lisk-core
+summary: Lisk blockchain application platform
+description: |
+  Run lisk-core
+adopt-info: lisk-core
+architectures: [amd64]
+
+confinement: strict
+base: core18
+
+parts:
+  lisk-core:
+    build-packages:
+      - git
+      - curl
+      - jq
+    plugin: nodejs
+    nodejs-version: 12.22.3
+    nodejs-package-manager: npm
+    source: .
+    override-build: |
+      snapcraftctl set-version "$(jq -r .version < package.json)"
+      export PATH=$PWD/../npm/bin:$PATH
+      cd ..
+      git clone https://github.com/LiskHQ/dev-cli || true
+      cd dev-cli
+      npm install --global yarn
+      npm install --global typescript
+      yarn
+      npm run build
+      yarn global add link:$PWD
+      cd ../build
+      npm ci
+      npm run build
+      oclif-dev pack --targets=linux-x64
+      cp dist/channels/*/*/*linux*.tar.gz ../install
+      cd ../install
+      tar -zvxf *.tar.gz
+      rm *.tar.gz
+      mkdir bin
+      cp ../npm/bin/* bin
+    stage:
+      - lisk-core/*
+      - bin/*
+
+apps:
+  lisk-core:
+    command: lisk-core/bin/lisk-core
+    plugs:
+      - network
+      - network-bind
+      - home

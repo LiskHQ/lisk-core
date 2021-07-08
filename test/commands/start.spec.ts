@@ -123,7 +123,34 @@ describe('start', () => {
 			await StartCommand.run(['-n', 'mainnet'], config);
 
 			expect(DownloadCommand.run).toHaveBeenCalledTimes(1);
-			expect(DownloadCommand.run).toHaveBeenCalledWith(['--network', 'mainnet']);
+			expect(DownloadCommand.run).toHaveBeenCalledWith([
+				'--network',
+				'mainnet',
+				'--data-path',
+				'~/.lisk/lisk-core',
+			]);
+		});
+	});
+
+	describe('when genesis block does not exists and testnet is started with download path', () => {
+		it('should download the genesis block', async () => {
+			when(fs.existsSync as jest.Mock)
+				.calledWith('~/.lisk/lisk-core/config/testnet/genesis_block.json')
+				.mockReturnValue(false);
+			jest.spyOn(DownloadCommand, 'run').mockResolvedValue(undefined);
+
+			await StartCommand.run(
+				['-n', 'testnet', '-d', '~/.lisk/lisk-core', '--overwrite-config'],
+				config,
+			);
+
+			expect(DownloadCommand.run).toHaveBeenCalledTimes(1);
+			expect(DownloadCommand.run).toHaveBeenCalledWith([
+				'--network',
+				'testnet',
+				'--data-path',
+				'~/.lisk/lisk-core',
+			]);
 		});
 	});
 
@@ -137,7 +164,12 @@ describe('start', () => {
 			await StartCommand.run(['-n', 'testnet', '--overwrite-config'], config);
 
 			expect(DownloadCommand.run).toHaveBeenCalledTimes(1);
-			expect(DownloadCommand.run).toHaveBeenCalledWith(['--network', 'testnet']);
+			expect(DownloadCommand.run).toHaveBeenCalledWith([
+				'--network',
+				'testnet',
+				'--data-path',
+				'~/.lisk/lisk-core',
+			]);
 		});
 	});
 
