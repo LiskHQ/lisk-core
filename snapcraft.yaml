@@ -20,7 +20,7 @@ parts:
     source: .
     override-build: |
       snapcraftctl set-version "$(jq -r .version < package.json)"
-      export PATH=$PWD/../npm/bin:$PATH
+      export PATH=/root/parts/lisk-core/npm/bin:$PATH
       cd ..
       git clone https://github.com/LiskHQ/dev-cli || true
       cd dev-cli
@@ -28,13 +28,13 @@ parts:
       npm install --global typescript
       yarn
       npm run build
-      yarn global add link:$PWD
       cd ../build
       npm ci
       npm run build
-      oclif-dev pack --targets=linux-x64
-      cp dist/channels/*/*/*linux*.tar.gz ../install
-      cd ../install
+      ../dev-cli/bin/run pack --targets=linux-x64
+      cd dist
+      find . -name \*linux\*.tar.gz -exec cp {} /root/parts/lisk-core/install \;
+      cd ../../install
       tar -zvxf *.tar.gz
       rm *.tar.gz
       mkdir bin
