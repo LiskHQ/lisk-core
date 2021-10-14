@@ -15,7 +15,7 @@
 
 import { Command, flags as flagParser } from '@oclif/command';
 import { RegisteredSchema, apiClient, codec, Transaction, cryptography } from 'lisk-sdk';
-import { getDefaultPath, getGenesisBlockAndConfig } from './utils/path';
+import { getDefaultPath } from './utils/path';
 import { flags as commonFlags } from './utils/flags';
 import { getApplication } from './application';
 import { DEFAULT_NETWORK } from './constants';
@@ -102,14 +102,18 @@ export default abstract class BaseIPCCommand extends Command {
 			: getDefaultPath();
 
 		if (this.baseIPCFlags.offline) {
-			// Read network genesis block and config from the folder
-			const { genesisBlock, config } = await getGenesisBlockAndConfig(this.baseIPCFlags.network);
-			const app = getApplication(genesisBlock, config, {
-				enableHTTPAPIPlugin: false,
-				enableForgerPlugin: false,
-				enableMonitorPlugin: false,
-				enableReportMisbehaviorPlugin: false,
-			});
+			// As we just need module schema, which have no dependency on genesis block
+			// and configuration. So passing empty objects.
+			const app = getApplication(
+				{},
+				{},
+				{
+					enableHTTPAPIPlugin: false,
+					enableForgerPlugin: false,
+					enableMonitorPlugin: false,
+					enableReportMisbehaviorPlugin: false,
+				},
+			);
 			this._schema = app.getSchema();
 			return;
 		}

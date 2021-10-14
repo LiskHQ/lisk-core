@@ -22,7 +22,8 @@
 		"minRemainingBalance": "5000000",
 		"activeDelegates": 101,
 		"standbyDelegates": 2,
-		"delegateListRoundOffset": 2
+		"delegateListRoundOffset": 2,
+		"unlockFixHeight": 16785878
 	},
 	"logger": {
 		"fileLogLevel": "error",

@@ -134,9 +134,9 @@ export default class CreateCommand extends BaseIPCCommand {
 			throw new Error('Sender public key must be specified when no-signature flags is used.');
 		}
 
-		if (offline && !networkIdentifierSource) {
+		if (offline && !noSignature && !networkIdentifierSource) {
 			throw new Error(
-				'Flag: --network-identifier must be specified while creating transaction offline.',
+				'Flag: --network-identifier must be specified while creating transaction offline with signature.',
 			);
 		}
 

@@ -17,7 +17,6 @@ import * as inquirer from 'inquirer';
 import { apiClient } from 'lisk-sdk';
 import { when } from 'jest-when';
 import * as Config from '@oclif/config';
-import { BaseForgingCommand } from '../../src/base_forging';
 import * as appUtils from '../../src/utils/application';
 import EnableCommand from '../../src/commands/forging/enable';
 import DisableCommand from '../../src/commands/forging/disable';
@@ -28,6 +27,12 @@ describe('forging', () => {
 		address: 'actionAddress',
 		forging: true,
 	};
+	const forgingStatus = {
+		height: 1,
+		maxHeightPrevoted: 1,
+		maxHeightPreviouslyForged: 1,
+	};
+
 	let stdout: string[];
 	let stderr: string[];
 	let config: Config.IConfig;
@@ -40,8 +45,15 @@ describe('forging', () => {
 		jest.spyOn(process.stdout, 'write').mockImplementation(val => stdout.push(val as string) > -1);
 		jest.spyOn(process.stderr, 'write').mockImplementation(val => stderr.push(val as string) > -1);
 		jest.spyOn(appUtils, 'isApplicationRunning').mockReturnValue(true);
-		jest.spyOn(BaseForgingCommand.prototype, 'printJSON').mockReturnValue();
-		invokeMock = jest.fn().mockResolvedValue({ address: 'actionAddress', forging: true });
+		jest.spyOn(EnableCommand.prototype, 'printJSON').mockReturnValue();
+		jest.spyOn(DisableCommand.prototype, 'printJSON').mockReturnValue();
+		invokeMock = jest.fn();
+		when(invokeMock)
+			.calledWith('app:getForgingStatus')
+			.mockResolvedValue([{ address: 'actionAddress', forging: true, ...forgingStatus }]);
+		when(invokeMock)
+			.calledWith('app:updateForgingStatus', expect.anything())
+			.mockResolvedValue({ address: 'actionAddress', forging: true });
 		jest.spyOn(apiClient, 'createIPCClient').mockResolvedValue({
 			disconnect: jest.fn(),
 			invoke: invokeMock,
@@ -51,25 +63,26 @@ describe('forging', () => {
 
 	describe('forging:enable', () => {
 		it('should throw an error when arg is not provided', async () => {
-			await expect(EnableCommand.run([], config)).rejects.toThrow('Missing 4 required arg');
+			await expect(EnableCommand.run([], config)).rejects.toThrow('Missing 1 required arg');
 		});
 
-		it('should throw an error when height, maxHeightPreviouslyForged and maxHeightPrevoted arg is not provided', async () => {
+		it('should throw an error when height, maxHeightPreviouslyForged and maxHeightPrevoted arg is provided along with flag use-status-values', async () => {
 			await expect(
-				EnableCommand.run(['myAddress', '--password=my-password'], config),
-			).rejects.toThrow('Missing 3 required arg');
+				EnableCommand.run(
+					['myAddress', '10', '10', '1', '--use-status-values', '--password=my-password'],
+					config,
+				),
+			).rejects.toThrow(
+				'Flag --use-status-values can not be used along with arguments height, maxHeightPreviouslyForged, maxHeightPrevoted',
+			);
 		});
 
-		it('should throw an error when arg maxHeightPreviouslyForged and maxHeightPrevoted  is not provided', async () => {
+		it('should throw an error when height, maxHeightPreviouslyForged and maxHeightPrevoted arg is less than zero', async () => {
 			await expect(
-				EnableCommand.run(['myAddress', '10', '--password=my-password'], config),
-			).rejects.toThrow('Missing 2 required arg');
-		});
-
-		it('should throw an error when arg maxHeightPrevoted is not provided', async () => {
-			await expect(
-				EnableCommand.run(['myAddress', '100', '100', '--password=my-password'], config),
-			).rejects.toThrow('Missing 1 required arg');
+				EnableCommand.run(['myAddress', '-10', '-10', '-1', '--password=my-password'], config),
+			).rejects.toThrow(
+				'The height, maxHeightPreviouslyForged and maxHeightPrevoted parameter value must be greater than or equal to 0',
+			);
 		});
 
 		describe('when invoked with password', () => {
@@ -84,6 +97,18 @@ describe('forging', () => {
 					maxHeightPrevoted: 1,
 					overwrite: false,
 				});
+			});
+
+			it('should use 0 as default when forging for first time', async () => {
+				const forgingData = { height: 0, maxHeightPrevoted: 0, maxHeightPreviouslyForged: 0 };
+				when(invokeMock)
+					.calledWith('app:getForgingStatus')
+					.mockResolvedValue([{ address: 'actionAddress', forging: true, ...forgingData }]);
+				await EnableCommand.run(
+					['actionAddress', '--use-status-values', '--password=my-password'],
+					config,
+				);
+				expect(EnableCommand.prototype.printJSON).toHaveBeenCalledWith(forgingData);
 			});
 		});
 
@@ -118,8 +143,8 @@ describe('forging', () => {
 		describe('when action is successful', () => {
 			it('should invoke action with given address and user provided password', async () => {
 				await EnableCommand.run(['myAddress', '10', '10', '1', '--password=my-password'], config);
-				expect(BaseForgingCommand.prototype.printJSON).toHaveBeenCalledTimes(1);
-				expect(BaseForgingCommand.prototype.printJSON).toHaveBeenCalledWith(actionResult);
+				expect(EnableCommand.prototype.printJSON).toHaveBeenCalledTimes(1);
+				expect(EnableCommand.prototype.printJSON).toHaveBeenCalledWith(actionResult);
 			});
 		});
 
@@ -176,10 +201,6 @@ describe('forging', () => {
 					address: 'myAddress',
 					forging: false,
 					password: 'my-password',
-					height: 0,
-					maxHeightPreviouslyForged: 0,
-					maxHeightPrevoted: 0,
-					overwrite: false,
 				});
 			});
 		});
@@ -204,10 +225,6 @@ describe('forging', () => {
 					address: 'myAddress',
 					forging: false,
 					password: 'promptPassword',
-					height: 0,
-					maxHeightPreviouslyForged: 0,
-					maxHeightPrevoted: 0,
-					overwrite: false,
 				});
 			});
 		});
@@ -215,8 +232,8 @@ describe('forging', () => {
 		describe('when action is successful', () => {
 			it('should invoke action with given address and user provided password', async () => {
 				await DisableCommand.run(['myAddress', '--password=my-password'], config);
-				expect(BaseForgingCommand.prototype.printJSON).toHaveBeenCalledTimes(1);
-				expect(BaseForgingCommand.prototype.printJSON).toHaveBeenCalledWith(actionResult);
+				expect(DisableCommand.prototype.printJSON).toHaveBeenCalledTimes(1);
+				expect(DisableCommand.prototype.printJSON).toHaveBeenCalledWith(actionResult);
 			});
 		});
 
@@ -227,10 +244,6 @@ describe('forging', () => {
 						address: 'myFailedDisabledAddress',
 						forging: false,
 						password: 'my-password',
-						height: 0,
-						maxHeightPreviouslyForged: 0,
-						maxHeightPrevoted: 0,
-						overwrite: false,
 					})
 					.mockRejectedValue(new Error('Custom Error'));
 				await expect(

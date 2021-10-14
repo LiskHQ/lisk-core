@@ -191,8 +191,26 @@ describe('transaction:create command', () => {
 							config,
 						),
 					).rejects.toThrow(
-						'Flag: --network-identifier must be specified while creating transaction offline',
+						'Flag: --network-identifier must be specified while creating transaction offline with signature.',
 					);
+				});
+
+				it('should not throw error for missing network identifier flag with --no-signature', async () => {
+					await expect(
+						CreateCommand.run(
+							[
+								'2',
+								'0',
+								'100000000',
+								'--asset={"amount": "abc"}',
+								`--passphrase=${passphrase}`,
+								'--offline',
+								'--no-signature',
+								'--network=devnet',
+							],
+							config,
+						),
+					).rejects.toThrow('Sender public key must be specified when no-signature flags is used.');
 				});
 			});
 
