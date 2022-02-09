@@ -23,12 +23,12 @@ export interface Vote {
 interface TransactionInput {
 	moduleID?: number;
 	moduleName?: string;
-	assetID?: number;
-	assetName?: string;
+	commandID?: number;
+	commandName?: string;
 	fee: bigint;
 	nonce?: bigint;
 	senderPublicKey?: Buffer;
-	asset: Record<string, unknown>;
+	params: Record<string, unknown>;
 	signatures?: Buffer[];
 }
 

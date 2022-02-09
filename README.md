@@ -176,7 +176,7 @@ npm test
 In order to run a node for a local test, in a root folder of lisk-core, run below command.
 
 ```
-./bin/run start -n devnet --data-path ./devnet-data --port 3333 --api-ws --enable-http-api-plugin --http-api-plugin-port 3334 --enable-forger-plugin
+./bin/run start -n devnet --data-path ./devnet-data --port 3333 --api-ws --enable-forger-plugin
 ```
 
 This command will start a lisk-core node using data path `./devnet-data` with HTTPAPI and Forger Plugins.

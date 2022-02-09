@@ -2,22 +2,22 @@
 
 Commands relating to Lisk Core transactions.
 
-- [`lisk-core transaction:create MODULEID ASSETID FEE`](#lisk-core-transactioncreate-moduleid-assetid-fee)
+- [`lisk-core transaction:create MODULEID COMMANDID FEE`](#lisk-core-transactioncreate-moduleid-commandid-fee)
 - [`lisk-core transaction:get ID`](#lisk-core-transactionget-id)
 - [`lisk-core transaction:send TRANSACTION`](#lisk-core-transactionsend-transaction)
 - [`lisk-core transaction:sign TRANSACTION`](#lisk-core-transactionsign-transaction)
 
-## `lisk-core transaction:create MODULEID ASSETID FEE`
+## `lisk-core transaction:create MODULEID COMMANDID FEE`
 
 Create transaction which can be broadcasted to the network. Note: fee and amount should be in Beddows!!
 
 ```
 USAGE
-  $ lisk-core transaction:create MODULEID ASSETID FEE
+  $ lisk-core transaction:create MODULEID COMMANDID FEE
 
 ARGUMENTS
   MODULEID  Registered transaction module id.
-  ASSETID   Registered transaction asset id.
+  COMMANDID Registered transaction asset id.
   FEE       Transaction fee in Beddows.
 
 OPTIONS

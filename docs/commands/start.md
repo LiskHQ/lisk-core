@@ -55,16 +55,6 @@ OPTIONS
   --enable-report-misbehavior-plugin                     Enable ReportMisbehavior Plugin. Environment variable
                                                          "LISK_ENABLE_REPORT_MISBEHAVIOR_PLUGIN" can also be used.
 
-  --http-api-plugin-host=http-api-plugin-host            Host to be used for HTTP API Plugin. Environment variable
-                                                         "LISK_HTTP_API_PLUGIN_HOST" can also be used.
-
-  --http-api-plugin-port=http-api-plugin-port            Port to be used for HTTP API Plugin. Environment variable
-                                                         "LISK_HTTP_API_PLUGIN_PORT" can also be used.
-
-  --http-api-plugin-whitelist=http-api-plugin-whitelist  List of IPs in comma separated value to allow the connection.
-                                                         Environment variable "LISK_HTTP_API_PLUGIN_WHITELIST" can also
-                                                         be used.
-
   --monitor-plugin-host=monitor-plugin-host              Host to be used for Monitor Plugin. Environment variable
                                                          "LISK_MONITOR_PLUGIN_HOST" can also be used.
 

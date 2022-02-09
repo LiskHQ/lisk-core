@@ -11,7 +11,7 @@ Stress test script enables creating and sending transactions to local node.
 Command to run lisk core node
 
 ```sh
-./bin/run start -n devnet --enable-ipc --enable-http-api
+./bin/run start -n devnet --enable-ipc
 ```
 
 Command to run stress test
@@ -25,7 +25,7 @@ $ npm run test:stress
 Command to run lisk core node
 
 ```sh
-./bin/run start -n devnet --enable-ipc --enable-http-api -d /tmp/test_node
+./bin/run start -n devnet --enable-ipc -d /tmp/test_node
 ```
 
 Command to run stress test
