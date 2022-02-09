@@ -109,6 +109,7 @@
 		"fs-extra": "9.0.1",
 		"inquirer": "7.3.2",
 		"lisk-sdk": "canary",
+		"@liskhq/lisk-framework-faucet-plugin": "canary",
 		"@liskhq/lisk-framework-forger-plugin": "canary",
 		"@liskhq/lisk-framework-report-misbehavior-plugin": "canary",
 		"@liskhq/lisk-framework-monitor-plugin": "canary",
