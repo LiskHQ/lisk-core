@@ -179,6 +179,12 @@ export default class StartCommand extends Command {
 			env: 'LISK_ENABLE_MONITOR_PLUGIN',
 			default: false,
 		}),
+		'enable-faucet-plugin': flagParser.boolean({
+			description:
+				'Enable Faucet Plugin. Environment variable "LISK_ENABLE_FAUCET_PLUGIN" can also be used.',
+			env: 'LISK_ENABLE_FAUCET_PLUGIN',
+			default: false,
+		}),
 	};
 
 	// eslint-disable-next-line @typescript-eslint/require-await
@@ -318,6 +324,7 @@ export default class StartCommand extends Command {
 			config.networkVersion = defaultConfig.networkVersion;
 
 			const app = getApplication(config, {
+				enableFaucetPlugin: flags['enable-faucet-plugin'],
 				enableForgerPlugin: flags['enable-forger-plugin'],
 				enableMonitorPlugin: flags['enable-monitor-plugin'],
 				enableReportMisbehaviorPlugin: flags['enable-report-misbehavior-plugin'],
