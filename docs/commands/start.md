@@ -40,6 +40,9 @@ OPTIONS
   --console-log=trace|debug|info|warn|error|fatal        Console log level. Environment variable
                                                          "LISK_CONSOLE_LOG_LEVEL" can also be used.
 
+  --enable-faucet-plugin                                 Enable Faucet Plugin. Environment variable
+                                                         "LISK_ENABLE_FAUCET_PLUGIN" can also be used.
+
   --enable-forger-plugin                                 Enable Forger Plugin. Environment variable
                                                          "LISK_ENABLE_FORGER_PLUGIN" can also be used.
 
