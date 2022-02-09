@@ -240,6 +240,14 @@ describe.skip('start', () => {
 		});
 	});
 
+	describe('when --enable-faucet-plugin is specified', () => {
+		it('should pass this value to configuration', async () => {
+			await StartCommand.run(['--enable-faucet-plugin'], config);
+			const [, , options] = (application.getApplication as jest.Mock).mock.calls[0];
+			expect(options.enableFaucetPlugin).toBe(true);
+		});
+	});
+
 	describe('when --enable-forger-plugin is specified', () => {
 		it('should pass this value to configuration', async () => {
 			await StartCommand.run(['--enable-forger-plugin'], config);
