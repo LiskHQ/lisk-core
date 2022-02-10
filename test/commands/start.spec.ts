@@ -100,7 +100,7 @@ describe.skip('start', () => {
 			await StartCommand.run([], config);
 			const [
 				usedGenesisBlock,
-				usedConfig,
+				usedConfig
 			] = (application.getApplication as jest.Mock).mock.calls[0];
 			expect(usedGenesisBlock.header.id).toEqual(devnetGenesisBlock.header.id);
 			expect(usedConfig.version).toBe(pJSON.version);
@@ -209,7 +209,7 @@ describe.skip('start', () => {
 	describe('when --api-ipc is specified', () => {
 		it('should update the config value', async () => {
 			await StartCommand.run(['--api-ipc'], config);
-			const [usedConfig,] = (application.getApplication as jest.Mock).mock.calls[0];
+			const [usedConfig] = (application.getApplication as jest.Mock).mock.calls[0];
 			expect(usedConfig.rpc.enable).toBe(true);
 			expect(usedConfig.rpc.mode).toBe('ipc');
 		});
@@ -218,7 +218,7 @@ describe.skip('start', () => {
 	describe('when --api-ws is specified', () => {
 		it('should update the config value', async () => {
 			await StartCommand.run(['--api-ws'], config);
-			const [usedConfig,] = (application.getApplication as jest.Mock).mock.calls[0];
+			const [usedConfig] = (application.getApplication as jest.Mock).mock.calls[0];
 			expect(usedConfig.rpc.enable).toBe(true);
 			expect(usedConfig.rpc.mode).toBe('ws');
 		});
@@ -227,7 +227,7 @@ describe.skip('start', () => {
 	describe('when custom host with --api-ws-host is specified along with --api-ws', () => {
 		it('should update the config value', async () => {
 			await StartCommand.run(['--api-ws', '--api-ws-host', '0.0.0.0'], config);
-			const [usedConfig,] = (application.getApplication as jest.Mock).mock.calls[0];
+			const [usedConfig] = (application.getApplication as jest.Mock).mock.calls[0];
 			expect(usedConfig.rpc.host).toBe('0.0.0.0');
 		});
 	});
@@ -235,7 +235,7 @@ describe.skip('start', () => {
 	describe('when custom port with --api-ws-port is specified along with --api-ws', () => {
 		it('should update the config value', async () => {
 			await StartCommand.run(['--api-ws', '--api-ws-port', '8888'], config);
-			const [usedConfig,] = (application.getApplication as jest.Mock).mock.calls[0];
+			const [usedConfig] = (application.getApplication as jest.Mock).mock.calls[0];
 			expect(usedConfig.rpc.port).toBe(8888);
 		});
 	});
@@ -270,7 +270,7 @@ describe.skip('start', () => {
 				['--enable-monitor-plugin', '--monitor-plugin-host', '0.0.0.0'],
 				config,
 			);
-			const [usedConfig,] = (application.getApplication as jest.Mock).mock.calls[0];
+			const [usedConfig] = (application.getApplication as jest.Mock).mock.calls[0];
 			expect(usedConfig.plugins.monitor.host).toBe('0.0.0.0');
 		});
 	});
@@ -278,7 +278,7 @@ describe.skip('start', () => {
 	describe('when custom port with --monitor-plugin-port is specified along with --enable-monitor-plugin', () => {
 		it('should update the config value', async () => {
 			await StartCommand.run(['--enable-monitor-plugin', '--monitor-plugin-port', '8888'], config);
-			const [usedConfig,] = (application.getApplication as jest.Mock).mock.calls[0];
+			const [usedConfig] = (application.getApplication as jest.Mock).mock.calls[0];
 			expect(usedConfig.plugins.monitor.port).toBe(8888);
 		});
 	});
@@ -293,7 +293,7 @@ describe.skip('start', () => {
 				],
 				config,
 			);
-			const [usedConfig,] = (application.getApplication as jest.Mock).mock.calls[0];
+			const [usedConfig] = (application.getApplication as jest.Mock).mock.calls[0];
 			expect(usedConfig.plugins.monitor.whiteList).toEqual(['192.08.0.1:8888', '192.08.0.2:8888']);
 		});
 	});
@@ -301,7 +301,7 @@ describe.skip('start', () => {
 	describe('when empty white list with --monitor-plugin-whitelist is specified along with --enable-monitor-plugin', () => {
 		it('should update the config value', async () => {
 			await StartCommand.run(['--enable-monitor-plugin', '--monitor-plugin-whitelist', ''], config);
-			const [usedConfig,] = (application.getApplication as jest.Mock).mock.calls[0];
+			const [usedConfig] = (application.getApplication as jest.Mock).mock.calls[0];
 			expect(usedConfig.plugins.monitor.whiteList).toEqual([]);
 		});
 	});
@@ -326,14 +326,14 @@ describe.skip('start', () => {
 				});
 
 			await StartCommand.run(['--config=./config.json'], config);
-			const [usedConfig,] = (application.getApplication as jest.Mock).mock.calls[0];
+			const [usedConfig] = (application.getApplication as jest.Mock).mock.calls[0];
 			expect(fs.readJSON).toHaveBeenCalledWith('./config.json');
 			expect(usedConfig.logger.consoleLogLevel).toBe('error');
 		});
 
 		it('should not override the genesis config', async () => {
 			await StartCommand.run(['--config=./custom_config.json'], config);
-			const [usedConfig,] = (application.getApplication as jest.Mock).mock.calls[0];
+			const [usedConfig] = (application.getApplication as jest.Mock).mock.calls[0];
 			expect(fs.readJSON).toHaveBeenCalledWith('./custom_config.json');
 			expect(usedConfig.genesisConfig.blockTime).not.toEqual(60);
 			expect(usedConfig.genesisConfig.blockTime).toEqual(10);
@@ -345,14 +345,14 @@ describe.skip('start', () => {
 	describe('when log is specified', () => {
 		it('should update the config value', async () => {
 			await StartCommand.run(['--console-log=trace'], config);
-			const [usedConfig,] = (application.getApplication as jest.Mock).mock.calls[0];
+			const [usedConfig] = (application.getApplication as jest.Mock).mock.calls[0];
 			expect(usedConfig.logger.consoleLogLevel).toBe('trace');
 		});
 
 		it('should update the config value from env', async () => {
 			process.env.LISK_CONSOLE_LOG_LEVEL = 'error';
 			await StartCommand.run([], config);
-			const [usedConfig,] = (application.getApplication as jest.Mock).mock.calls[0];
+			const [usedConfig] = (application.getApplication as jest.Mock).mock.calls[0];
 			expect(usedConfig.logger.consoleLogLevel).toBe('error');
 			process.env.LISK_CONSOLE_LOG_LEVEL = '';
 		});
@@ -361,14 +361,14 @@ describe.skip('start', () => {
 	describe('when file log is specified', () => {
 		it('should update the config value', async () => {
 			await StartCommand.run(['--log=trace'], config);
-			const [usedConfig,] = (application.getApplication as jest.Mock).mock.calls[0];
+			const [usedConfig] = (application.getApplication as jest.Mock).mock.calls[0];
 			expect(usedConfig.logger.fileLogLevel).toBe('trace');
 		});
 
 		it('should update the config value fro menv', async () => {
 			process.env.LISK_FILE_LOG_LEVEL = 'trace';
 			await StartCommand.run([], config);
-			const [usedConfig,] = (application.getApplication as jest.Mock).mock.calls[0];
+			const [usedConfig] = (application.getApplication as jest.Mock).mock.calls[0];
 			expect(usedConfig.logger.fileLogLevel).toBe('trace');
 			process.env.LISK_FILE_LOG_LEVEL = '';
 		});
@@ -377,14 +377,14 @@ describe.skip('start', () => {
 	describe('when port is specified', () => {
 		it('should update the config value', async () => {
 			await StartCommand.run(['--port=1111'], config);
-			const [usedConfig,] = (application.getApplication as jest.Mock).mock.calls[0];
+			const [usedConfig] = (application.getApplication as jest.Mock).mock.calls[0];
 			expect(usedConfig.network.port).toBe(1111);
 		});
 
 		it('should update the config value fro menv', async () => {
 			process.env.LISK_PORT = '1234';
 			await StartCommand.run([], config);
-			const [usedConfig,] = (application.getApplication as jest.Mock).mock.calls[0];
+			const [usedConfig] = (application.getApplication as jest.Mock).mock.calls[0];
 			expect(usedConfig.network.port).toBe(1234);
 			process.env.LISK_PORT = '';
 		});
@@ -393,14 +393,14 @@ describe.skip('start', () => {
 	describe('when seed peer is specified', () => {
 		it('should update the config value', async () => {
 			await StartCommand.run(['--seed-peers=localhost:12234'], config);
-			const [usedConfig,] = (application.getApplication as jest.Mock).mock.calls[0];
+			const [usedConfig] = (application.getApplication as jest.Mock).mock.calls[0];
 			expect(usedConfig.network.seedPeers).toEqual([{ ip: 'localhost', port: 12234 }]);
 		});
 
 		it('should update the config value using env variable', async () => {
 			process.env.LISK_SEED_PEERS = 'localhost:12234,74.49.3.35:2238';
 			await StartCommand.run([], config);
-			const [usedConfig,] = (application.getApplication as jest.Mock).mock.calls[0];
+			const [usedConfig] = (application.getApplication as jest.Mock).mock.calls[0];
 			expect(usedConfig.network.seedPeers).toEqual([
 				{ ip: 'localhost', port: 12234 },
 				{ ip: '74.49.3.35', port: 2238 },

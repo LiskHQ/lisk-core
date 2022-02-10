@@ -271,11 +271,11 @@ export default class StartCommand extends Command {
 		config.version = this.config.pjson.version;
 
 		if (flags['enable-faucet-plugin']) {
-            // eslint-disable-next-line @typescript-eslint/no-unnecessary-condition
-            if (!(['devnet', 'betanet', 'testnet'].includes(flags.network))) {
-                this.error('Faucet plugin can be enabled for test networks: devnet/betanet/testnet');
-            }
-        }
+			// eslint-disable-next-line @typescript-eslint/no-unnecessary-condition
+			if (!(['devnet', 'betanet', 'testnet'].includes(flags.network))) {
+				this.error('Faucet plugin can be enabled for test networks: devnet/betanet/testnet');
+			}
+		}
 		// Inject other properties specified
 		if (flags['api-ipc']) {
 			config.rpc = utils.objects.mergeDeep({}, config.rpc, {
