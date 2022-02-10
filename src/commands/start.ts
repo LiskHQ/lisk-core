@@ -145,14 +145,12 @@ export default class StartCommand extends Command {
 		}),
 		'enable-forger-plugin': flagParser.boolean({
 			description:
-				'Enable Forger Plugin. Environment variable "LISK_ENABLE_FORGER_PLUGIN" can also be used.',
-			env: 'LISK_ENABLE_FORGER_PLUGIN',
+				'Enable Forger Plugin.',
 			default: false,
 		}),
 		'enable-monitor-plugin': flagParser.boolean({
 			description:
-				'Enable Monitor Plugin. Environment variable "LISK_ENABLE_MONITOR_PLUGIN" can also be used.',
-			env: 'LISK_ENABLE_MONITOR_PLUGIN',
+				'Enable Monitor Plugin.',
 			default: false,
 		}),
 		'monitor-plugin-host': flagParser.string({
@@ -175,14 +173,12 @@ export default class StartCommand extends Command {
 		}),
 		'enable-report-misbehavior-plugin': flagParser.boolean({
 			description:
-				'Enable ReportMisbehavior Plugin. Environment variable "LISK_ENABLE_REPORT_MISBEHAVIOR_PLUGIN" can also be used.',
-			env: 'LISK_ENABLE_MONITOR_PLUGIN',
+				'Enable ReportMisbehavior Plugin.',
 			default: false,
 		}),
 		'enable-faucet-plugin': flagParser.boolean({
 			description:
-				'Enable Faucet Plugin. Environment variable "LISK_ENABLE_FAUCET_PLUGIN" can also be used.',
-			env: 'LISK_ENABLE_FAUCET_PLUGIN',
+				'Enable Faucet Plugin.',
 			default: false,
 		}),
 	};

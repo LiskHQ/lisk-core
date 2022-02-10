@@ -40,20 +40,13 @@ OPTIONS
   --console-log=trace|debug|info|warn|error|fatal        Console log level. Environment variable
                                                          "LISK_CONSOLE_LOG_LEVEL" can also be used.
 
-  --enable-faucet-plugin                                 Enable Faucet Plugin. Environment variable
-                                                         "LISK_ENABLE_FAUCET_PLUGIN" can also be used.
+  --enable-faucet-plugin                                 Enable Faucet Plugin.
 
-  --enable-forger-plugin                                 Enable Forger Plugin. Environment variable
-                                                         "LISK_ENABLE_FORGER_PLUGIN" can also be used.
+  --enable-forger-plugin                                 Enable Forger Plugin.
 
-  --enable-http-api-plugin                               Enable HTTP API Plugin. Environment variable
-                                                         "LISK_ENABLE_HTTP_API_PLUGIN" can also be used.
+  --enable-monitor-plugin                                Enable Monitor Plugin.
 
-  --enable-monitor-plugin                                Enable Monitor Plugin. Environment variable
-                                                         "LISK_ENABLE_MONITOR_PLUGIN" can also be used.
-
-  --enable-report-misbehavior-plugin                     Enable ReportMisbehavior Plugin. Environment variable
-                                                         "LISK_ENABLE_REPORT_MISBEHAVIOR_PLUGIN" can also be used.
+  --enable-report-misbehavior-plugin                     Enable ReportMisbehavior Plugin.
 
   --monitor-plugin-host=monitor-plugin-host              Host to be used for Monitor Plugin. Environment variable
                                                          "LISK_MONITOR_PLUGIN_HOST" can also be used.
