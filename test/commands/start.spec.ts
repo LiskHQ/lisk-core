@@ -100,7 +100,7 @@ describe.skip('start', () => {
 			await StartCommand.run([], config);
 			const [
 				usedGenesisBlock,
-				usedConfig
+				usedConfig,
 			] = (application.getApplication as jest.Mock).mock.calls[0];
 			expect(usedGenesisBlock.header.id).toEqual(devnetGenesisBlock.header.id);
 			expect(usedConfig.version).toBe(pJSON.version);
@@ -242,7 +242,10 @@ describe.skip('start', () => {
 
 	describe('when --enable-faucet-plugin is specified', () => {
 		it('should pass this value to configuration', async () => {
-			await StartCommand.run(['-n', 'devnet', '--enable-faucet-plugin', '--overwrite-config'], config);
+			await StartCommand.run(
+				['-n', 'devnet', '--enable-faucet-plugin', '--overwrite-config'],
+				config,
+			);
 			const [, options] = (application.getApplication as jest.Mock).mock.calls[0];
 			expect(options.enableFaucetPlugin).toBe(true);
 		});

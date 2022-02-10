@@ -144,13 +144,11 @@ export default class StartCommand extends Command {
 				'Seed peers to initially connect to in format of comma separated "ip:port". IP can be DNS name or IPV4 format. Environment variable "LISK_SEED_PEERS" can also be used.',
 		}),
 		'enable-forger-plugin': flagParser.boolean({
-			description:
-				'Enable Forger Plugin.',
+			description: 'Enable Forger Plugin.',
 			default: false,
 		}),
 		'enable-monitor-plugin': flagParser.boolean({
-			description:
-				'Enable Monitor Plugin.',
+			description: 'Enable Monitor Plugin.',
 			default: false,
 		}),
 		'monitor-plugin-host': flagParser.string({
@@ -172,13 +170,11 @@ export default class StartCommand extends Command {
 			dependsOn: ['enable-monitor-plugin'],
 		}),
 		'enable-report-misbehavior-plugin': flagParser.boolean({
-			description:
-				'Enable ReportMisbehavior Plugin.',
+			description: 'Enable ReportMisbehavior Plugin.',
 			default: false,
 		}),
 		'enable-faucet-plugin': flagParser.boolean({
-			description:
-				'Enable Faucet Plugin.',
+			description: 'Enable Faucet Plugin.',
 			default: false,
 		}),
 	};
@@ -269,7 +265,7 @@ export default class StartCommand extends Command {
 
 		if (flags['enable-faucet-plugin']) {
 			// eslint-disable-next-line @typescript-eslint/no-unnecessary-condition
-			if (!(['devnet', 'betanet', 'testnet'].includes(flags.network))) {
+			if (!['devnet', 'betanet', 'testnet'].includes(flags.network)) {
 				this.error('Faucet plugin can be enabled for test networks: devnet/betanet/testnet');
 			}
 		}
