@@ -37,9 +37,9 @@ describe.skip('start', () => {
 		config = await getConfig();
 		jest.spyOn(process.stdout, 'write').mockImplementation(val => stdout.push(val as string) > -1);
 		jest.spyOn(process.stderr, 'write').mockImplementation(val => stderr.push(val as string) > -1);
-		jest.spyOn(application, 'getApplication').mockReturnValue({
+		jest.spyOn(application, 'getApplication').mockReturnValue(({
 			run: async () => Promise.resolve(),
-		} as unknown as Application);
+		} as unknown) as Application);
 		jest.spyOn(fs, 'readJSON');
 		when(fs.readJSON as jest.Mock)
 			.calledWith('~/.lisk/lisk-core/config/mainnet/config.json')
@@ -51,7 +51,7 @@ describe.skip('start', () => {
 				plugins: {},
 				genesisConfig: {
 					blockTime: 10,
-				}
+				},
 			})
 			.calledWith('~/.lisk/lisk-core/config/testnet/config.json')
 			.mockResolvedValue({
@@ -85,7 +85,7 @@ describe.skip('start', () => {
 				networkVersion: '3.1',
 				genesisConfig: {
 					blockTime: 60,
-				}
+				},
 			});
 		jest.spyOn(fs, 'existsSync').mockReturnValue(true);
 		jest.spyOn(fs, 'ensureDirSync').mockReturnValue();

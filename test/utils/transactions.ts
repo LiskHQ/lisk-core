@@ -12,13 +12,7 @@
  * Removal or modification of this copyright notice is prohibited.
  */
 
-import {
-	cryptography,
-	transactions,
-	codec,
-	TransferCommand,
-	VoteCommand,
-} from 'lisk-sdk';
+import { cryptography, transactions, codec, TransferCommand, VoteCommand } from 'lisk-sdk';
 import { Schema } from '../../src/base_ipc';
 
 const account = {

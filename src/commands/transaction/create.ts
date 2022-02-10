@@ -27,10 +27,7 @@ interface Args {
 	readonly fee: string;
 }
 
-const isAuthObject = (
-	input: Record<string, unknown>,
-	key: string,
-): input is { nonce: bigint } => {
+const isAuthObject = (input: Record<string, unknown>, key: string): input is { nonce: bigint } => {
 	const value = input[key];
 	if (typeof value !== 'bigint') {
 		return false;

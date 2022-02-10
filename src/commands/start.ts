@@ -194,7 +194,8 @@ export default class StartCommand extends Command {
 		const defaultNetworkConfigDir = getConfigDirs(defaultNetworkConfigs);
 		if (!defaultNetworkConfigDir.includes(flags.network)) {
 			this.error(
-				`Network must be one of ${defaultNetworkConfigDir.join(',')} but received ${flags.network
+				`Network must be one of ${defaultNetworkConfigDir.join(',')} but received ${
+					flags.network
 				}.`,
 			);
 		}
@@ -335,7 +336,9 @@ export default class StartCommand extends Command {
 			await app.run(genesisBlock);
 		} catch (errors) {
 			this.error(
-				Array.isArray(errors as Error[]) ? (errors as Error[]).map(err => err.message).join(',') : errors as Error,
+				Array.isArray(errors as Error[])
+					? (errors as Error[]).map(err => err.message).join(',')
+					: (errors as Error),
 			);
 		}
 	}

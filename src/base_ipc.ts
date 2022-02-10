@@ -130,10 +130,7 @@ export default abstract class BaseIPCCommand extends Command {
 		}
 	}
 
-	protected getCommandSchema(
-		moduleID: number,
-		commandID: number,
-	): RegisteredSchema['commands'][0] {
+	protected getCommandSchema(moduleID: number, commandID: number): RegisteredSchema['commands'][0] {
 		const commandSchema = this._schema.commands.find(
 			schema => schema.moduleID === moduleID && schema.commandID === commandID,
 		);
@@ -153,7 +150,10 @@ export default abstract class BaseIPCCommand extends Command {
 		const id = cryptography.hash(transactionBytes);
 		const transaction = codec.decode<Transaction>(this._schema.transaction, transactionBytes);
 		const commandSchema = this.getCommandSchema(transaction.moduleID, transaction.commandID);
-		const params = codec.decode<Record<string, unknown>>(commandSchema.schema as Schema, transaction.params);
+		const params = codec.decode<Record<string, unknown>>(
+			commandSchema.schema as Schema,
+			transaction.params,
+		);
 		return {
 			...transaction,
 			params,
