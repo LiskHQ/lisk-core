@@ -8,7 +8,7 @@ ARG REGISTRY_AUTH_TOKEN
 ENV NODE_ENV=production
 
 RUN apk --no-cache upgrade && \
-    apk --no-cache add --virtual build-dependencies alpine-sdk autoconf automake libtool linux-headers python
+    apk --no-cache add --virtual build-dependencies alpine-sdk autoconf automake libtool linux-headers python2
 
 RUN addgroup -g 1100 lisk && \
     adduser -h /home/lisk -s /bin/bash -u 1100 -G lisk -D lisk
