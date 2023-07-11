@@ -93,4 +93,4 @@ EXAMPLES
   start --network testnet --config ~/my_custom_config.json
 ```
 
-_See code: [dist/commands/start.ts](https://github.com/LiskHQ/lisk-core/blob/v4.0.0-beta.3/dist/commands/start.ts)_
+_See code: [dist/commands/start.ts](https://github.com/LiskHQ/lisk-core/blob/v4.0.0-beta.4/dist/commands/start.ts)_

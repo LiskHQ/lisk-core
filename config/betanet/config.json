@@ -19,7 +19,7 @@
 		"bftBatchSize": 103,
 		"chainID": "02000000",
 		"maxTransactionsSize": 15360,
-		"minimumCertifyHeight": 10611
+		"minimumCertifyHeight": 10609
 	},
 	"generator": {
 		"keys": {}
@@ -70,9 +70,6 @@
 		"pos": {
 			"maxBFTWeightCap": 1000,
 			"useInvalidBLSKey": true
-		},
-		"token": {
-			"feeTokenID": "0200000000000000"
 		}
 	},
 	"plugins": {}

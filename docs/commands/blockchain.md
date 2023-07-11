@@ -32,7 +32,7 @@ EXAMPLES
   download --url https://snapshots.lisk.com/mainnet/blockchain.db.tar.gz --output ./downloads
 ```
 
-_See code: [dist/commands/blockchain/download.ts](https://github.com/LiskHQ/lisk-core/blob/v4.0.0-beta.3/dist/commands/blockchain/download.ts)_
+_See code: [dist/commands/blockchain/download.ts](https://github.com/LiskHQ/lisk-core/blob/v4.0.0-beta.4/dist/commands/blockchain/download.ts)_
 
 ## `lisk-core blockchain:export`
 
@@ -53,7 +53,7 @@ EXAMPLES
   blockchain:export --data-path ./data --output ./my/path/
 ```
 
-_See code: [dist/commands/blockchain/export.ts](https://github.com/LiskHQ/lisk-core/blob/v4.0.0-beta.3/dist/commands/blockchain/export.ts)_
+_See code: [dist/commands/blockchain/export.ts](https://github.com/LiskHQ/lisk-core/blob/v4.0.0-beta.4/dist/commands/blockchain/export.ts)_
 
 ## `lisk-core blockchain:hash`
 
@@ -72,7 +72,7 @@ EXAMPLES
   blockchain:hash --data-path ./data
 ```
 
-_See code: [dist/commands/blockchain/hash.ts](https://github.com/LiskHQ/lisk-core/blob/v4.0.0-beta.3/dist/commands/blockchain/hash.ts)_
+_See code: [dist/commands/blockchain/hash.ts](https://github.com/LiskHQ/lisk-core/blob/v4.0.0-beta.4/dist/commands/blockchain/hash.ts)_
 
 ## `lisk-core blockchain:import FILEPATH`
 
@@ -97,7 +97,7 @@ EXAMPLES
   blockchain:import ./path/to/blockchain.tar.gz --data-path ./lisk/ --force
 ```
 
-_See code: [dist/commands/blockchain/import.ts](https://github.com/LiskHQ/lisk-core/blob/v4.0.0-beta.3/dist/commands/blockchain/import.ts)_
+_See code: [dist/commands/blockchain/import.ts](https://github.com/LiskHQ/lisk-core/blob/v4.0.0-beta.4/dist/commands/blockchain/import.ts)_
 
 ## `lisk-core blockchain:reset`
 
@@ -119,4 +119,4 @@ EXAMPLES
   blockchain:reset --yes
 ```
 
-_See code: [dist/commands/blockchain/reset.ts](https://github.com/LiskHQ/lisk-core/blob/v4.0.0-beta.3/dist/commands/blockchain/reset.ts)_
+_See code: [dist/commands/blockchain/reset.ts](https://github.com/LiskHQ/lisk-core/blob/v4.0.0-beta.4/dist/commands/blockchain/reset.ts)_

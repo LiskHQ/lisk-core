@@ -28,7 +28,7 @@ EXAMPLES
   genesis-block:create --output mydir --assets-file ./assets.json
 ```
 
-_See code: [dist/commands/genesis-block/create.ts](https://github.com/LiskHQ/lisk-core/blob/v4.0.0-beta.3/dist/commands/genesis-block/create.ts)_
+_See code: [dist/commands/genesis-block/create.ts](https://github.com/LiskHQ/lisk-core/blob/v4.0.0-beta.4/dist/commands/genesis-block/create.ts)_
 
 ## `lisk-core genesis-block:download`
 
@@ -54,4 +54,4 @@ EXAMPLES
   genesis-block:download --url http://mydomain.com/genesis_block.json.gz --data-path ./lisk/ --force
 ```
 
-_See code: [dist/commands/genesis-block/download.ts](https://github.com/LiskHQ/lisk-core/blob/v4.0.0-beta.3/dist/commands/genesis-block/download.ts)_
+_See code: [dist/commands/genesis-block/download.ts](https://github.com/LiskHQ/lisk-core/blob/v4.0.0-beta.4/dist/commands/genesis-block/download.ts)_

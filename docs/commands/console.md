@@ -23,4 +23,4 @@ EXAMPLES
   console --api-ipc=/path/to/server
 ```
 
-_See code: [dist/commands/console.ts](https://github.com/LiskHQ/lisk-core/blob/v4.0.0-beta.3/dist/commands/console.ts)_
+_See code: [dist/commands/console.ts](https://github.com/LiskHQ/lisk-core/blob/v4.0.0-beta.4/dist/commands/console.ts)_
