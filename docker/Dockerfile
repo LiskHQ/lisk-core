@@ -28,7 +28,7 @@ RUN adduser -D lisk && \
 
 USER lisk
 WORKDIR /home/lisk
-VOLUME ["/home/lisk/.lisk"]
+VOLUME ["/home/lisk/.lisk/lisk-core"]
 
 COPY --chown=lisk:lisk ./ .
 COPY --from=builder /home/lisk/build/node_modules/ ./node_modules/
