@@ -43,7 +43,8 @@ module.exports = {
 			repo: 'https://github.com/LiskHQ/lisk-core.git',
 			path: '/tmp/lisk-core',
 			'pre-setup': 'rm -rf /tmp/lisk-core',
-			'post-setup': 'source ~/.bashrc; source ~/.zshrc; nvm install && npm ci && npm run build',
+			'post-setup':
+				'source ~/.bashrc; source ~/.zshrc; nvm install && yarn install --frozen-lockfile && npm run build',
 			'pre-deploy': 'source ~/.bashrc; source ~/.zshrc; pm2 del lisk-core;:',
 			'post-deploy': 'source ~/.bashrc; source ~/.zshrc; pm2 start ecosystem.config.js',
 		},
@@ -55,7 +56,8 @@ module.exports = {
 			repo: 'https://github.com/LiskHQ/lisk-core.git',
 			path: '/tmp/lisk-core',
 			'pre-setup': 'rm -rf /tmp/lisk-core',
-			'post-setup': 'source ~/.bashrc; nvm install && npm ci && npm run build',
+			'post-setup':
+				'source ~/.bashrc; nvm install && yarn install --frozen-lockfile && npm run build',
 			'pre-deploy': 'source ~/.bashrc; pm2 del lisk-core;:',
 			'post-deploy': 'source ~/.bashrc; pm2 start ecosystem.config.js',
 		},

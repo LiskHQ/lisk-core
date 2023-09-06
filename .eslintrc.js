@@ -8,5 +8,7 @@ module.exports = {
 	rules: {
 		'@typescript-eslint/explicit-member-accessibility': 'off',
 		'@typescript-eslint/explicit-function-return-type': 'off',
+		'@typescript-eslint/member-ordering': 'off',
+		'@typescript-eslint/no-unsafe-argument': 'warn',
 	},
 };

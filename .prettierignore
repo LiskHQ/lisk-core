@@ -22,6 +22,8 @@ mocha.opts
 *.png
 *.sql
 *.blob
+*.lock
+
 ## jest snapshot
 *.snap
 *.tsbuildinfo

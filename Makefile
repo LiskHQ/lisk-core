@@ -27,7 +27,7 @@ npm-shrinkwrap.json: package-lock.json
 	cp -f package-lock.json npm-shrinkwrap.json
 
 node_modules: npm-shrinkwrap.json
-	npm ci
+	yarn install --frozen-lockfile
 
 dist/index.js: node_modules
 	npm run build
@@ -50,7 +50,7 @@ build-image:
 	docker buildx build -f ./docker/Dockerfile --build-arg NODEJS_VERSION=$(shell cat .nvmrc) --tag=lisk/core .
 
 build-local:
-	npm ci
+	yarn install --frozen-lockfile
 	npm run build
 
 clean: clean-image clean-local
