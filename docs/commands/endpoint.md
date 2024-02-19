@@ -34,7 +34,7 @@ EXAMPLES
   endpoint:invoke consensus_getBFTParameters -f ./input.json
 ```
 
-_See code: [dist/commands/endpoint/invoke.ts](https://github.com/LiskHQ/lisk-core/blob/v4.0.1/dist/commands/endpoint/invoke.ts)_
+_See code: [dist/commands/endpoint/invoke.ts](https://github.com/LiskHQ/lisk-core/blob/v4.0.2/dist/commands/endpoint/invoke.ts)_
 
 ## `lisk-core endpoint:list [ENDPOINT]`
 
@@ -68,4 +68,4 @@ EXAMPLES
   endpoint:list getBalances -m token -d ~/.lisk/pos-mainchain
 ```
 
-_See code: [dist/commands/endpoint/list.ts](https://github.com/LiskHQ/lisk-core/blob/v4.0.1/dist/commands/endpoint/list.ts)_
+_See code: [dist/commands/endpoint/list.ts](https://github.com/LiskHQ/lisk-core/blob/v4.0.2/dist/commands/endpoint/list.ts)_

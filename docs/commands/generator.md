@@ -37,7 +37,7 @@ EXAMPLES
   generator:disable lskycz7hvr8yfu74bcwxy2n4mopfmjancgdvxq8xz --data-path ./data --password your_password
 ```
 
-_See code: [dist/commands/generator/disable.ts](https://github.com/LiskHQ/lisk-core/blob/v4.0.1/dist/commands/generator/disable.ts)_
+_See code: [dist/commands/generator/disable.ts](https://github.com/LiskHQ/lisk-core/blob/v4.0.2/dist/commands/generator/disable.ts)_
 
 ## `lisk-core generator:enable ADDRESS`
 
@@ -80,7 +80,7 @@ EXAMPLES
   --max-height-prevoted=10 --data-path ./data --password your_password
 ```
 
-_See code: [dist/commands/generator/enable.ts](https://github.com/LiskHQ/lisk-core/blob/v4.0.1/dist/commands/generator/enable.ts)_
+_See code: [dist/commands/generator/enable.ts](https://github.com/LiskHQ/lisk-core/blob/v4.0.2/dist/commands/generator/enable.ts)_
 
 ## `lisk-core generator:export`
 
@@ -104,7 +104,7 @@ EXAMPLES
   generator:export --output /mypath/generator_info.json --data-path ./data
 ```
 
-_See code: [dist/commands/generator/export.ts](https://github.com/LiskHQ/lisk-core/blob/v4.0.1/dist/commands/generator/export.ts)_
+_See code: [dist/commands/generator/export.ts](https://github.com/LiskHQ/lisk-core/blob/v4.0.2/dist/commands/generator/export.ts)_
 
 ## `lisk-core generator:import`
 
@@ -127,7 +127,7 @@ EXAMPLES
   generator:import --file-path ./my/path/genInfo.json --data-path ./data
 ```
 
-_See code: [dist/commands/generator/import.ts](https://github.com/LiskHQ/lisk-core/blob/v4.0.1/dist/commands/generator/import.ts)_
+_See code: [dist/commands/generator/import.ts](https://github.com/LiskHQ/lisk-core/blob/v4.0.2/dist/commands/generator/import.ts)_
 
 ## `lisk-core generator:status`
 
@@ -148,4 +148,4 @@ EXAMPLES
   generator:status --data-path ./sample --pretty
 ```
 
-_See code: [dist/commands/generator/status.ts](https://github.com/LiskHQ/lisk-core/blob/v4.0.1/dist/commands/generator/status.ts)_
+_See code: [dist/commands/generator/status.ts](https://github.com/LiskHQ/lisk-core/blob/v4.0.2/dist/commands/generator/status.ts)_

@@ -24,4 +24,4 @@ EXAMPLES
   hash-onion --count=1000000 --distance=2000 --output ~/my_onion.json
 ```
 
-_See code: [dist/commands/hash-onion.ts](https://github.com/LiskHQ/lisk-core/blob/v4.0.1/dist/commands/hash-onion.ts)_
+_See code: [dist/commands/hash-onion.ts](https://github.com/LiskHQ/lisk-core/blob/v4.0.2/dist/commands/hash-onion.ts)_

@@ -25,7 +25,7 @@ EXAMPLES
   system:metadata --data-path ./lisk
 ```
 
-_See code: [dist/commands/system/metadata.ts](https://github.com/LiskHQ/lisk-core/blob/v4.0.1/dist/commands/system/metadata.ts)_
+_See code: [dist/commands/system/metadata.ts](https://github.com/LiskHQ/lisk-core/blob/v4.0.2/dist/commands/system/metadata.ts)_
 
 ## `lisk-core system:node-info`
 
@@ -46,4 +46,4 @@ EXAMPLES
   system:node-info --data-path ./lisk
 ```
 
-_See code: [dist/commands/system/node-info.ts](https://github.com/LiskHQ/lisk-core/blob/v4.0.1/dist/commands/system/node-info.ts)_
+_See code: [dist/commands/system/node-info.ts](https://github.com/LiskHQ/lisk-core/blob/v4.0.2/dist/commands/system/node-info.ts)_
