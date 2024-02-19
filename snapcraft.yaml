@@ -17,7 +17,7 @@ parts:
       - jq
     plugin: nil
     build-environment:
-      - NODE_VERSION: 18.16.1
+      - NODE_VERSION: 18.19.1
     source: .
     override-build: |
       export PRV=$(pwd)

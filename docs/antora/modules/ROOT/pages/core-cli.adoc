@@ -24,7 +24,7 @@ Displays a summary of all available CLI commands of Lisk Core.
 Lisk blockchain application platform
 
 VERSION
-  lisk-core/4.0.0 darwin-arm64 node-v18.16.0
+  lisk-core/4.0.1 darwin-arm64 node-v18.19.1
 
 USAGE
   $ lisk-core [COMMAND]
@@ -1191,7 +1191,7 @@ lisk-core genesis-block:create --assets-file genesis_assets.json --output ./devn
 2023-04-07T16:47:08.881Z INFO XYZ.local application 55996 Registered and initialized legacy module
 2023-04-07T16:47:08.881Z INFO XYZ.local application 55996 Registered legacy module has command reclaimLSK
 2023-04-07T16:47:08.881Z INFO XYZ.local application 55996 Registered legacy module has command registerKeys
-Genesis block files saved at: /Users/XYZ/.nvm/versions/node/v18.16.0/lib/node_modules/lisk-core/config/devnet/devnet
+Genesis block files saved at: /Users/XYZ/.nvm/versions/node/v18.19.1/lib/node_modules/lisk-core/config/devnet/devnet
 ----
 ====
 

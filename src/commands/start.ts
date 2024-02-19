@@ -183,19 +183,19 @@ export class StartCommand extends BaseStartCommand {
 		);
 
 		if (flags['enable-forger-plugin']) {
-			app.registerPlugin(new ForgerPlugin(), { loadAsChildProcess: true });
+			app.registerPlugin(new ForgerPlugin() as any, { loadAsChildProcess: true });
 		}
 		if (flags['enable-monitor-plugin']) {
-			app.registerPlugin(new MonitorPlugin(), { loadAsChildProcess: true });
+			app.registerPlugin(new MonitorPlugin() as any, { loadAsChildProcess: true });
 		}
 		if (flags['enable-report-misbehavior-plugin']) {
-			app.registerPlugin(new ReportMisbehaviorPlugin(), { loadAsChildProcess: true });
+			app.registerPlugin(new ReportMisbehaviorPlugin() as any, { loadAsChildProcess: true });
 		}
 		if (flags['enable-faucet-plugin']) {
-			app.registerPlugin(new FaucetPlugin(), { loadAsChildProcess: true });
+			app.registerPlugin(new FaucetPlugin() as any, { loadAsChildProcess: true });
 		}
 		if (flags['enable-chain-connector-plugin']) {
-			app.registerPlugin(new ChainConnectorPlugin(), { loadAsChildProcess: true });
+			app.registerPlugin(new ChainConnectorPlugin() as any, { loadAsChildProcess: true });
 		}
 
 		return app;
