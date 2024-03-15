@@ -27,7 +27,7 @@ EXAMPLES
   config:create --output mydir --label beta-sdk-app --community-identifier sdk
 ```
 
-_See code: [dist/commands/config/create.ts](https://github.com/LiskHQ/lisk-core/blob/v4.0.2/dist/commands/config/create.ts)_
+_See code: [dist/commands/config/create.ts](https://github.com/LiskHQ/lisk-core/blob/v4.0.3/dist/commands/config/create.ts)_
 
 ## `lisk-core config:show`
 
@@ -51,4 +51,4 @@ EXAMPLES
   config:show --config ./custom-config.json --data-path ./data
 ```
 
-_See code: [dist/commands/config/show.ts](https://github.com/LiskHQ/lisk-core/blob/v4.0.2/dist/commands/config/show.ts)_
+_See code: [dist/commands/config/show.ts](https://github.com/LiskHQ/lisk-core/blob/v4.0.3/dist/commands/config/show.ts)_

@@ -23,7 +23,7 @@ EXAMPLES
   passphrase:create --output /mypath/passphrase.json
 ```
 
-_See code: [dist/commands/passphrase/create.ts](https://github.com/LiskHQ/lisk-core/blob/v4.0.2/dist/commands/passphrase/create.ts)_
+_See code: [dist/commands/passphrase/create.ts](https://github.com/LiskHQ/lisk-core/blob/v4.0.3/dist/commands/passphrase/create.ts)_
 
 ## `lisk-core passphrase:decrypt`
 
@@ -46,7 +46,7 @@ EXAMPLES
   passphrase:decrypt --file-path ./my/path/output.json --password your-password
 ```
 
-_See code: [dist/commands/passphrase/decrypt.ts](https://github.com/LiskHQ/lisk-core/blob/v4.0.2/dist/commands/passphrase/decrypt.ts)_
+_See code: [dist/commands/passphrase/decrypt.ts](https://github.com/LiskHQ/lisk-core/blob/v4.0.3/dist/commands/passphrase/decrypt.ts)_
 
 ## `lisk-core passphrase:encrypt`
 
@@ -81,4 +81,4 @@ EXAMPLES
   passphrase:encrypt --output-public-key --output /mypath/keys.json
 ```
 
-_See code: [dist/commands/passphrase/encrypt.ts](https://github.com/LiskHQ/lisk-core/blob/v4.0.2/dist/commands/passphrase/encrypt.ts)_
+_See code: [dist/commands/passphrase/encrypt.ts](https://github.com/LiskHQ/lisk-core/blob/v4.0.3/dist/commands/passphrase/encrypt.ts)_

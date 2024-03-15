@@ -40,7 +40,7 @@ EXAMPLES
   085d7c9b7bddc8052be9eefe185f407682a495f1b4498677df1480026b74f2e9
 ```
 
-_See code: [dist/commands/genesis-block/create.ts](https://github.com/LiskHQ/lisk-core/blob/v4.0.2/dist/commands/genesis-block/create.ts)_
+_See code: [dist/commands/genesis-block/create.ts](https://github.com/LiskHQ/lisk-core/blob/v4.0.3/dist/commands/genesis-block/create.ts)_
 
 ## `lisk-core genesis-block:download`
 
@@ -66,4 +66,4 @@ EXAMPLES
   genesis-block:download --url http://mydomain.com/genesis_block.blob.tar.gz --data-path ./lisk/ --force
 ```
 
-_See code: [dist/commands/genesis-block/download.ts](https://github.com/LiskHQ/lisk-core/blob/v4.0.2/dist/commands/genesis-block/download.ts)_
+_See code: [dist/commands/genesis-block/download.ts](https://github.com/LiskHQ/lisk-core/blob/v4.0.3/dist/commands/genesis-block/download.ts)_

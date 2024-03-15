@@ -70,7 +70,7 @@ EXAMPLES
   transaction:create token transfer 100000000 --file=/txn_params.json --json
 ```
 
-_See code: [dist/commands/transaction/create.ts](https://github.com/LiskHQ/lisk-core/blob/v4.0.2/dist/commands/transaction/create.ts)_
+_See code: [dist/commands/transaction/create.ts](https://github.com/LiskHQ/lisk-core/blob/v4.0.3/dist/commands/transaction/create.ts)_
 
 ## `lisk-core transaction:get ID`
 
@@ -93,7 +93,7 @@ EXAMPLE
   transaction:get eab06c6a22e88bca7150e0347a7d976acd070cb9284423e6eabecd657acc1263
 ```
 
-_See code: [dist/commands/transaction/get.ts](https://github.com/LiskHQ/lisk-core/blob/v4.0.2/dist/commands/transaction/get.ts)_
+_See code: [dist/commands/transaction/get.ts](https://github.com/LiskHQ/lisk-core/blob/v4.0.3/dist/commands/transaction/get.ts)_
 
 ## `lisk-core transaction:send TRANSACTION`
 
@@ -118,7 +118,7 @@ EXAMPLE
   2cea39d58aa84809aa87bcfe6feaac46211c80472ad9297fd87727709f5d7e7b4134caf106b02
 ```
 
-_See code: [dist/commands/transaction/send.ts](https://github.com/LiskHQ/lisk-core/blob/v4.0.2/dist/commands/transaction/send.ts)_
+_See code: [dist/commands/transaction/send.ts](https://github.com/LiskHQ/lisk-core/blob/v4.0.3/dist/commands/transaction/send.ts)_
 
 ## `lisk-core transaction:sign TRANSACTION`
 
@@ -161,4 +161,4 @@ EXAMPLES
   transaction:sign <hex-encoded-binary-transaction> --network testnet
 ```
 
-_See code: [dist/commands/transaction/sign.ts](https://github.com/LiskHQ/lisk-core/blob/v4.0.2/dist/commands/transaction/sign.ts)_
+_See code: [dist/commands/transaction/sign.ts](https://github.com/LiskHQ/lisk-core/blob/v4.0.3/dist/commands/transaction/sign.ts)_

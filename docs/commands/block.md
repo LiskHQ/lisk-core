@@ -27,4 +27,4 @@ EXAMPLES
   block:get 2
 ```
 
-_See code: [dist/commands/block/get.ts](https://github.com/LiskHQ/lisk-core/blob/v4.0.2/dist/commands/block/get.ts)_
+_See code: [dist/commands/block/get.ts](https://github.com/LiskHQ/lisk-core/blob/v4.0.3/dist/commands/block/get.ts)_

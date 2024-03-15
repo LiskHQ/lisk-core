@@ -48,7 +48,7 @@ EXAMPLES
   /mypath/keys.json
 ```
 
-_See code: [dist/commands/keys/create.ts](https://github.com/LiskHQ/lisk-core/blob/v4.0.2/dist/commands/keys/create.ts)_
+_See code: [dist/commands/keys/create.ts](https://github.com/LiskHQ/lisk-core/blob/v4.0.3/dist/commands/keys/create.ts)_
 
 ## `lisk-core keys:encrypt`
 
@@ -71,7 +71,7 @@ EXAMPLES
   keys:encrypt --file-path ./my/path/keys.json --password mypass
 ```
 
-_See code: [dist/commands/keys/encrypt.ts](https://github.com/LiskHQ/lisk-core/blob/v4.0.2/dist/commands/keys/encrypt.ts)_
+_See code: [dist/commands/keys/encrypt.ts](https://github.com/LiskHQ/lisk-core/blob/v4.0.3/dist/commands/keys/encrypt.ts)_
 
 ## `lisk-core keys:export`
 
@@ -94,7 +94,7 @@ EXAMPLES
   keys:export --output /mypath/keys.json --data-path ./data
 ```
 
-_See code: [dist/commands/keys/export.ts](https://github.com/LiskHQ/lisk-core/blob/v4.0.2/dist/commands/keys/export.ts)_
+_See code: [dist/commands/keys/export.ts](https://github.com/LiskHQ/lisk-core/blob/v4.0.3/dist/commands/keys/export.ts)_
 
 ## `lisk-core keys:import`
 
@@ -117,4 +117,4 @@ EXAMPLES
   keys:import --file-path ./my/path/keys.json --data-path ./data
 ```
 
-_See code: [dist/commands/keys/import.ts](https://github.com/LiskHQ/lisk-core/blob/v4.0.2/dist/commands/keys/import.ts)_
+_See code: [dist/commands/keys/import.ts](https://github.com/LiskHQ/lisk-core/blob/v4.0.3/dist/commands/keys/import.ts)_
