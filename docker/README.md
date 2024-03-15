@@ -12,7 +12,7 @@ Run a "lisk-core" container against the mainnet:
 docker run --volume lisk-data:/home/lisk/.lisk \
            --publish 7667:7667 \
            --name lisk-core \
-           lisk/core:4.0.2 \
+           lisk/core:4.0.3 \
            start --network=mainnet
 ```
 
@@ -25,7 +25,7 @@ docker run --volume lisk-data:/home/lisk/.lisk \
            --publish 7667:7667 \
            --publish 127.0.0.1:7887:7887 \
            --name lisk-core \
-           lisk/core:4.0.2 \
+           lisk/core:4.0.3 \
            start --network=mainnet --api-ws --api-http --log=debug
 ```
 
@@ -36,7 +36,7 @@ docker run --volume lisk-data:/home/lisk/.lisk \
            --publish 7667:7667 \
            --env LISK_LOG_LEVEL=debug \
            --name lisk-core \
-           lisk/core:4.0.2 \
+           lisk/core:4.0.3 \
            start --network=mainnet
 ```
 
@@ -45,11 +45,11 @@ See https://lisk.com/documentation/lisk-core/management/configuration.html for a
 ## Import blockchain snapshot
 
 ```
-docker run --volume lisk-data:/home/lisk/.lisk -it --rm lisk/core:4.0.2 blockchain:download --network=mainnet --output=/home/lisk/.lisk/tmp/
+docker run --volume lisk-data:/home/lisk/.lisk -it --rm lisk/core:4.0.3 blockchain:download --network=mainnet --output=/home/lisk/.lisk/tmp/
 
-docker run --volume lisk-data:/home/lisk/.lisk -it --rm lisk/core:4.0.2 blockchain:import /home/lisk/.lisk/tmp/blockchain.db.tar.gz
+docker run --volume lisk-data:/home/lisk/.lisk -it --rm lisk/core:4.0.3 blockchain:import /home/lisk/.lisk/tmp/blockchain.db.tar.gz
 
-docker run --volume lisk-data:/home/lisk/.lisk -it --rm --entrypoint rm lisk/core:4.0.2 -f /home/lisk/.lisk/tmp/blockchain.db.tar.gz
+docker run --volume lisk-data:/home/lisk/.lisk -it --rm --entrypoint rm lisk/core:4.0.3 -f /home/lisk/.lisk/tmp/blockchain.db.tar.gz
 
 docker start lisk-core
 
