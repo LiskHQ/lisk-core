@@ -3,7 +3,9 @@
 		"dataPath": "~/.lisk",
 		"logLevel": "info",
 		"enableMetrics": true,
-		"keepEventsForHeights": 300
+		"keepEventsForHeights": 300,
+		"keepInclusionProofsForHeights": 300,
+		"inclusionProofKeys": []
 	},
 	"rpc": {
 		"modes": ["ipc", "ws"],
